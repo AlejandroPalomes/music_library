@@ -1,0 +1,67 @@
+@font-face{
+    font-family: "SFPro";
+    src: url("../font/SF-Pro-Display-Regular.otf");
+}
+
+@font-face{
+    font-family: "SFPro";
+    src: url("../font/SF-Pro-Display-Bold.otf");
+    font-weight: bold;
+}
+/* src: url("LillyMae-Regular.otf"); */
+/* @import url("LillyMae-Regular.otf"); */
+
+*{
+    font-family: "SFPro", sans-serif;
+    margin: 0;
+    border: 0;
+    border: 1px solid red;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.main__target{
+    border: 1px solid rgb(124, 124, 124);
+    height: 310px;
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: "SFPro";
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.main__target:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+}
+
+input::placeholder{
+    font-family: "SFPro";
+    font-weight: bold;
+}
+.main__target__img{
+    height: 40%;
+    overflow: hidden;
+}
+.main__target__img img{
+    width: 100%;
+}
+
+.main__target__info{
+    height: 60%;
+}
+
+.main__target__title{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.main__target__artist{
+    font-size: 14px;
+    color: grey;
+}

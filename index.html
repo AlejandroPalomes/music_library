@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <select name="" id="fieldSelect">
+        <option value="" selected disabled>Choose a category</option>
+        <option value="song">Songs</option>
+        <option value="allArtist">Artists</option>
+        <option value="album">Album</option>
+        <option value="musicVideo">Video</option>
+    </select>
+    <!-- <input type="text" id="inputMusic" value="" placeholder="Search Music"> -->
+    <input type="text" id="inputArtist" value="" placeholder="Serach Artist">
+    <!-- <input type="text" id="inputAlbum" value="" placeholder="Search Album">
+    <input type="text" id="inputVideo" value="" placeholder="Search video"> -->
+
+    <select name="test" id="countrySelect">
+        <option value="" selected disabled>Choose a Country</option>
+    </select>
+
+    <label for="">explicit</label>
+    <input type="checkbox" name="" id="explicit">
+    <select name="" id="limitSelect">
+        <option selected disabled value="">Limit results</option>
+        <option value="10">10</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+    </select>
+    <button id="searchBtn">Search</button>
+
+
+    <div id="main__container" class=" d-flex flex-row justify-content-md-between justify-content-around my-5 mx-3 flex-wrap">
+        <div class="main__target mx-3 mb-4 d-flex flex-column">
+            <div class="main__target__img">
+                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
+            </div>
+            <div class=" main__target__info d-flex flex-column justify-content-between">
+                <div class="mt-2 px-2 d-flex flex-column justify-content-between">
+                    <h4 class="main__target__title">Name of the song</h4>
+                    <h5 class="main__target__artist">Artist name</h5>
+                    <h6 class="main__artist__album">Album name</h6>
+                </div>
+                <div class="px-2 d-flex justify-content-between">
+                    <span>Release date</span>
+                    <a href="http://"><span>Price</span></a>
+                </div>
+                <span class="px-2">Genere</span>
+                <div class="px-2">
+                    <button>Play</button>
+                    <span>Song length</span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="main__target mx-3 mb-4">
+            <div class="main__target__img">
+                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
+            </div>
+            <div>
+                <h4>Name of the song</h4>
+                <h5>Artist name</h5>
+                <h6>Album name</h6>
+            </div>
+            <div>
+                <span>Release date</span>
+                <a href="http://"><span>Price</span></a>
+            </div>
+            <span>Genere</span>
+            <div>
+                <button>Play</button>
+                <span>Song length</span>
+            </div>
+        </div>
+
+        <div class="main__target mx-3 mb-4">
+            <div class="main__target__img">
+                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
+            </div>
+            <div>
+                <h4>Name of the song</h4>
+                <h5>Artist name</h5>
+                <h6>Album name</h6>
+            </div>
+            <div>
+                <span>Release date</span>
+                <a href="http://"><span>Price</span></a>
+            </div>
+            <span>Genere</span>
+            <div>
+                <button>Play</button>
+                <span>Song length</span>
+            </div>
+        </div>
+
+        <div class="main__target mx-3 mb-4">
+            <div class="main__target__img">
+                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
+            </div>
+            <div>
+                <h4>Name of the song</h4>
+                <h5>Artist name</h5>
+                <h6>Album name</h6>
+            </div>
+            <div>
+                <span>Release date</span>
+                <a href="http://"><span>Price</span></a>
+            </div>
+            <span>Genere</span>
+            <div>
+                <button>Play</button>
+                <span>Song length</span>
+            </div>
+        </div>
+
+        <div class="main__target mx-3 mb-4">
+            <div class="main__target__img">
+                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
+            </div>
+            <div>
+                <h4>Name of the song</h4>
+                <h5>Artist name</h5>
+                <h6>Album name</h6>
+            </div>
+            <div>
+                <span>Release date</span>
+                <a href="http://"><span>Price</span></a>
+            </div>
+            <span>Genere</span>
+            <div>
+                <button>Play</button>
+                <span>Song length</span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
