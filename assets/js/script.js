@@ -1,6 +1,7 @@
 var iTunesURI = "https://itunes.apple.com/search?";
 var endpoint = "term=babymetal&limit=50&country=jp";
 var countryValue;
+var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
 $.ajax({
@@ -16,9 +17,11 @@ $.ajax({
 
 // $("#searchBtn").click((e)=>{
 $("#inputArtist").keyup((e)=>{
+    //poner todo esto dentro de una funcion, y añadir más listeners de cambios de estado del check, o de las categories, y que cuando
+    //suceda, se ejecute esta misma función
     endpoint = `term=${$("#inputArtist").prop("value")}`;
     
-    if($("#fieldSelect").val() != ""){
+    if($("#fieldSelect").val() != null){
         endpoint += `&entity=${$("#fieldSelect option:selected").val()}`
     }
 
@@ -28,6 +31,7 @@ $("#inputArtist").keyup((e)=>{
     if($("#limitSelect option:selected").val() != ""){
         endpoint += `&limit=${$("#limitSelect option:selected").val()}`
     }
+
     // console.log($("#countrySelect option:selected").val())
     console.log(endpoint);
 
@@ -40,7 +44,7 @@ function getResults(iTunesURI, endpoint){
     $.ajax({
         url : iTunesURI,
         data: endpoint + "&lang=ja_jp",
-        method: "GET",
+        // method: "GET",
         dataType: "jsonp",
         success: (result)=> {
             logResults(result.results)
@@ -54,31 +58,36 @@ function getResults(iTunesURI, endpoint){
 // getResults(iTunesURI, endpoint);
 
 function printResults(result, type){
-    if($(".result").length) $(".result").remove()
+    $("#main__container").empty();
+    // if($(".result").length) $(".result").remove() //!Do with empty in the main__container
     if($("#fieldSelect").val() == "song"){
         $(result).each((i, e)=>{
             if($("#explicit").prop("checked")){
-                $("#main__container").append(`<div class="main__target mx-3 mb-4 d-flex flex-column result">
-                                                <div class="main__target__img">
-                                                    <img src="${e.artworkUrl100}" alt="art img">
-                                                </div>
-                                                <div class=" main__target__info d-flex flex-column justify-content-between">
-                                                    <div class="mt-2 px-2 d-flex flex-column justify-content-between">
-                                                        <h4 class="main__target__title">${e.collectionName}</h4>
-                                                        <h5 class="main__target__artist">${e.artistName}</h5>
-                                                        <h6 class="main__artist__album">${e.collectionName}</h6>
-                                                    </div>
-                                                    <div class="px-2 d-flex justify-content-between">
-                                                        <span>${e.releaseDate}</span>
-                                                        <a href="http://"><span>${e.trackPrice}</span></a>
-                                                    </div>
-                                                    <span class="px-2">${e.primaryGenreName}</span>
-                                                    <div class="px-2">
-                                                        <button>Play</button>
-                                                        <span>${e.trackTimeMillis}</span>
-                                                    </div>
-                                                </div>
-                                            </div>`
+                var n = new Date(e.releaseDate);
+                $("#main__container").append(`
+                <a href="${e.collectionViewUrl}" class="result">
+                    <div class="main__target mx-3 mb-4 d-flex flex-column">
+                        <div class="main__target__img">
+                            <img src="${e.artworkUrl100}" alt="art img">
+                        </div>
+                        <div class=" main__target__info d-flex flex-column justify-content-between">
+                            <div class="mt-2 px-2 d-flex flex-column justify-content-between">
+                                <h4 class="main__target__title">${e.collectionName}</h4>
+                                <h5 class="main__target__artist">${e.artistName}</h5>
+                                <h6 class="main__artist__album">${e.collectionName}</h6>
+                            </div>
+                            <div class="px-2 d-flex justify-content-between">
+                                <span>${month[n.getMonth()]} ${n.getFullYear()}</span>
+                                <span>${e.trackPrice}</span>
+                            </div>
+                            <span class="px-2">${e.primaryGenreName}</span>
+                            <div class="px-2">
+                                <button>Play</button>
+                                <span>${e.trackTimeMillis}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>`
             );
             }else{
                 if(e.collectionExplicitness == "notExplicit"){
@@ -107,7 +116,6 @@ function printResults(result, type){
 
             })
         }
-    
 }
 
 function logResults(result){
