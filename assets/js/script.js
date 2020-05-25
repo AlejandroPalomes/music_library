@@ -1,7 +1,7 @@
 var iTunesURI = "https://itunes.apple.com/search?";
 var endpoint = "term=babymetal&limit=50&country=jp";
 var countryValue;
-var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
 $.ajax({
@@ -59,7 +59,6 @@ function getResults(iTunesURI, endpoint){
 
 function printResults(result, type){
     $("#main__container").empty();
-    // if($(".result").length) $(".result").remove() //!Do with empty in the main__container
     if($("#fieldSelect").val() == "song"){
         $(result).each((i, e)=>{
             if($("#explicit").prop("checked")){
