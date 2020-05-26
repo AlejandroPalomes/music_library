@@ -21,7 +21,6 @@ $.ajax({
 
 $(document).ready(() => {
     var fav = getLocalStorage();
-    // console.log(fav)
     $(fav).each((i, e) => {
         var id;
         if(e.type == "song") id= e.trackId;
@@ -30,15 +29,13 @@ $(document).ready(() => {
             url: "https://itunes.apple.com/lookup?id=" + id,
             dataType: "jsonp",
             success: (track) => {
-                // console.log(track.results[0])
                 printResults(track.results[0], e.type, true);
             },
             complete: ()=> {
                 $(".result").hover((e) => {
-                    // console.log($(`#h${e.currentTarget.id}`))
                     $(`#h${e.currentTarget.id}`).toggleClass("d-none");
                 });
-
+                heartFill();
                 heartClik();
 
             }
@@ -69,9 +66,6 @@ function updateSearch() {
     if ($("#limitSelect option:selected").val() != null) {
         endpoint += `&limit=${$("#limitSelect option:selected").val()}`
     }
-
-    // console.log($("#countrySelect option:selected").val())
-    // console.log(endpoint);
 
     getResults(iTunesURI, endpoint);
 }
@@ -106,23 +100,6 @@ function getResults(iTunesURI, endpoint) {
         }
     });
 }
-
-//!-----------------------------------------TESTING DIV-----------------------------------------
-// $(".result").hover((e) => {
-//     console.log(e.currentTarget);
-//     // $(`#h${e.currentTarget.id}`).toggleClass("d-none");
-// });
-// $(".main__target__preview__btn").click(e => {
-//     // console.log($(e.currentTarget).parent().parent().parent().parent().prop("id"));
-//     return false;
-// })
-// $(".heart").click(e => {
-//     console.log($(e.currentTarget).parent().parent().prop("id"))
-//     checkStorage(e.currentTarget);
-//     return false;
-// })
-//!-----------------------------------------TESTING DIV-----------------------------------------
-
 
 function printResults(result, type, fav) {
     // $("#main__container").empty();
@@ -160,17 +137,9 @@ function printResults(result, type, fav) {
             break;
 
         case "allArtist":
-            console.log("i'm in artist");
-            console.log("--------------------")
             $(result).each((i, e) => {
-                //console.log(e);
                 if(e.wrapperType == "artist"){
                     createArtist(e);
-                    // $.ajax({
-                    //     url: `https://itunes.apple.com/lookup?id=${e.artistId}`,
-                    //     success: (artist) => createArtist(artist),
-                    //     error: () => console.log("fuck on id"),
-                    // });
                 }
             })
             break;
@@ -205,14 +174,13 @@ function heartClik(){
         saveLocalSorage(objFav);
         return false;
     })
+    heartFill()
 }
 
 function heartFill(){
     var storage = getLocalStorage();
             $(".result").each((i, song)=>{
                 $(storage).each((i, fav)=>{
-                    console.log(fav.trackId)
-                    console.log(song.id)
                     if(song.id == fav.trackId){
                         $(`#h${song.id}`).addClass("fillHeart");
                         $(`#h${song.id} .st0`).css("fill", "red");
