@@ -49,6 +49,10 @@ header > div{
     flex-grow: 1;
 }
 
+#main__container{
+    width: 85%;
+}
+
 .main__search-bar{
     box-sizing: border-box;
     border: 2px solid rgb(40, 42, 58);
@@ -101,6 +105,7 @@ input::placeholder{
 }
 .main__target__img img{
     width: 100%;
+    transform: translateY(-30px);
 }
 
 .main__target__info{
@@ -181,6 +186,11 @@ input::placeholder{
 
 .heartActive{
     /* fill: red; */
+}
+
+.main__container__artist{
+    width: 100%;
+    border: 1px solid red;
 }
 
 /*? FOOTER START  ?*/

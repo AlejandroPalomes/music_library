@@ -9,7 +9,7 @@ function createSong(e, month, date){
 
     return `
         <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
-                <div class="main__target mx-3 mb-4 d-flex flex-column">
+                <div class="main__target mx-3 mb-5 d-flex flex-column">
                     <div class="main__target__img">
                         <img src="${e.artworkUrl100}" alt="art img">
                     </div>
