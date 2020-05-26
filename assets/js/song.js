@@ -15,13 +15,13 @@ function createSong(e, month, date){
                     </div>
                     <div class=" main__target__info d-flex flex-column justify-content-between">
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
-                            <h4 class="main__target__title">${truncate(e.trackName, 40, true)}</h4>
+                            <h4 class="main__target__title">${truncate(e.trackName, 35, true)}</h4>
                             <h5 class="main__target__artist">${e.artistName}</h5>
                             <h6 class="main__target__album">${truncate(e.collectionName, 30, true)}</h6>
                         </div>
                         <div class="px-3 d-flex justify-content-between smallText">
                             <span>${month[date.getMonth()]} ${date.getFullYear()}</span>
-                            <span><span>${e.trackPrice}</span><span> $</span></span>
+                            <span><span>${e.trackPrice}</span><span> ${e.currency}</span></span>
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-between align-items-center">

@@ -41,6 +41,31 @@ header > div{
     width: 85%;
 }
  /*? HEADER END */
+ .general{
+    min-height: 100vh;
+}
+
+.main{
+    flex-grow: 1;
+}
+
+.main__search-bar{
+    box-sizing: border-box;
+    border: 2px solid rgb(40, 42, 58);
+    border-radius: 20px;
+    width: 85%;
+    height: 40px;
+    padding: 0 8px
+}
+
+.main__search-bar input{
+    border-bottom: 1px solid rgb(40, 42, 58);
+}
+
+.main__search-bar input:focus, .main__search-bar select:focus{
+    outline: none;
+}
+
 
 .main__target{
     /* border: 1px solid rgb(124, 124, 124); */
@@ -157,3 +182,44 @@ input::placeholder{
 .heartActive{
     /* fill: red; */
 }
+
+/*? FOOTER START  ?*/
+
+footer{
+    height: 60px;
+    padding: 0 7%;
+    font-weight: 700;
+    background-color: rgb(36, 39, 49);
+    border-radius: 15px 15px 0 0;
+    color: white;
+    font-weight: 300;
+    margin-top: 50px;
+}
+
+footer > div > span:nth-of-type(1){
+    margin-left: 10px;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: opacity 0.3s ease;
+}
+
+footer a:hover{
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+footer a img{
+    margin-right: 5px;
+}
+
+footer a:hover img{
+    fill: yellow;
+}
+
+/*? FOOTER END */
