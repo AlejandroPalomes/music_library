@@ -172,12 +172,10 @@ function logResults(result) {
 
 function heartClik(){
     $(".heart").click(e => {
-        // console.log("working")
-        console.log($(e.currentTarget).parent().parent().prop("id"))
+        // console.log($(e.currentTarget).parent().parent().prop("id"))
         let trackIdCurrent = $(e.currentTarget).parent().parent().prop("id");
         let currentType = $(e.currentTarget).parent().parent().data("type");
 
-        // console.log("working")
         objFav.trackId = trackIdCurrent;
         objFav.type = currentType;
 
