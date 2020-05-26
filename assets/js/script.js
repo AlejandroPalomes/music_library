@@ -34,16 +34,16 @@ function favLoad() {
             success: (track) => {
                 printResults(track.results[0], e.type, true);
             },
-            complete: () => {
+            complete: (o, track) => {
                 if (i === count-1) {
                     // this will be executed at the end of the loop
                     $(".result").hover((e) => {
-                        console.log("hover")
+                        // console.log("hover")
                         $(`#h${e.currentTarget.id}`).toggleClass("d-none");
                     });
                     heartFill();
                     $(".main__target__preview__btn").click(e => {
-                        console.log("working");
+                        // console.log("working");
                         return false;
                     })
                     heartClik();
@@ -179,6 +179,11 @@ function heartClik(){
         objFav.trackId = trackIdCurrent;
         objFav.type = currentType;
 
+        $(e.currentTarget).toggleClass("fillHeart");
+        $(`#${e.currentTarget.id} .st0`).toggleClass("st0-2");
+        console.log($(e.currentTarget))
+        // .toggleClass("fillHeart");
+
         getLocalStorage();
         saveLocalSorage(objFav);
         return false;
@@ -191,8 +196,9 @@ function heartFill(){
     $(".result").each((i, song)=>{
         $(storage).each((i, fav)=>{
             if(song.id == fav.trackId){
+                console.log("i'm in fucking fav bitch")
                 $(`#h${song.id}`).addClass("fillHeart");
-                $(`#h${song.id} .st0`).css("fill", "red");
+                $(`#h${song.id} .st0`).addClass("st0-2");
             }
         })
     })
@@ -235,9 +241,9 @@ function uploadStorage(storage, obj1){
 function removeSong(storage, element) {
     let index;
     $(storage).each((i, song) => {
-        console.log(i)
+        // console.log(i)
         if (song.trackId == element.trackId) {
-            console.log(i + " index of same id")
+            // console.log(i + " index of same id")
             index = i;
         }
     });
