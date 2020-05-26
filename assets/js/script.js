@@ -21,13 +21,8 @@ $.ajax({
 
 function favLoad() {
     var fav = getLocalStorage();
-    var count = $(fav).length;
-    console.log(count)
 
     $(fav).each((i, e) => {
-        // var id;
-        // if(e.type == "song") id= e.trackId;
-        // if(e.type == "Album") id= e.trackId;
         $.ajax({
             url: "https://itunes.apple.com/lookup?id=" + e.trackId,
             dataType: "jsonp",
@@ -35,19 +30,29 @@ function favLoad() {
                 printResults(track.results[0], e.type, true);
             },
             complete: (o, track) => {
-                if (i === count-1) {
-                    // this will be executed at the end of the loop
-                    $(".result").hover((e) => {
-                        // console.log("hover")
-                        $(`#h${e.currentTarget.id}`).toggleClass("d-none");
-                    });
-                    heartFill();
-                    $(".main__target__preview__btn").click(e => {
-                        // console.log("working");
-                        return false;
-                    })
-                    heartClik();
-                }
+                $(`#p${e.trackId}`).click(a => {
+                    console.log("working");
+                    return false;
+                })
+
+                $(`#${e.trackId}`).hover((a) => {
+                    $(`#h${a.currentTarget.id}`).toggleClass("d-none");
+                });
+
+                $(`#h${e.trackId}`).addClass("fillHeart");
+                $(`#h${e.trackId} .st0`).addClass("st0-2");
+
+                $(`#h${e.trackId}`).click(a => {
+                    $(a.currentTarget).toggleClass("fillHeart");
+                    $(`#${a.currentTarget.id} .st0`).toggleClass("st0-2");
+
+                    objFav.trackId = e.trackId;
+                    objFav.type = e.type;
+                    getLocalStorage();
+                    saveLocalSorage(objFav);
+
+                    return false;
+                })
             }
         })
     })
@@ -181,8 +186,6 @@ function heartClik(){
 
         $(e.currentTarget).toggleClass("fillHeart");
         $(`#${e.currentTarget.id} .st0`).toggleClass("st0-2");
-        console.log($(e.currentTarget))
-        // .toggleClass("fillHeart");
 
         getLocalStorage();
         saveLocalSorage(objFav);
