@@ -77,7 +77,8 @@ function printResults(result, type) {
         $(result).each((i, e) => {
             if ($("#explicit").prop("checked")) {
                 var n = new Date(e.releaseDate);
-                $("#main__container").append(`
+                $("#main__container").append(function createSong(){
+                    return `
                 <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}">
                     <div class="main__target mx-3 mb-4 d-flex flex-column">
                         <div class="main__target__img">
@@ -113,7 +114,7 @@ function printResults(result, type) {
                         7.234374-62.101562 21.5-16.441406 12.71875-27.894532 28.796874-34.609375 40.046874-3.453125 5.785157-9.53125 9.238282-16.261719 9.238282s-12.808594-3.453125-16.261719-9.238282c-6.710937-11.25-18.164062-27.328124-34.609375-40.046874-18.449218-14.265626-39.34375-21.5-62.097656-21.5zm0 0"/>
                         </svg>
                     </div>
-                </a>`);
+                </a>`});
             } else {
                 if (e.collectionExplicitness == "notExplicit") {
                     $("#main__container").append(`<img class="result" src=${e.artworkUrl100}>`);

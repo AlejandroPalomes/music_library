@@ -83,6 +83,10 @@ input::placeholder{
     color: rgb(28, 135, 252);
 }
 
+.smallText{
+    font-size: 14px;
+}
+
 .main__target__preview__btn{
     width: 35px;
     height: 35px;
