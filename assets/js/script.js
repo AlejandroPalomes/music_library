@@ -63,10 +63,10 @@ function updateSearch() {
         endpoint += `&entity=${$("#fieldSelect option:selected").val()}`
     }
 
-    if ($("#countrySelect option:selected").val() != "") {
+    if ($("#countrySelect option:selected").val() != null) {
         endpoint += `&country=${$("#countrySelect option:selected").val()}`
     }
-    if ($("#limitSelect option:selected").val() != "") {
+    if ($("#limitSelect option:selected").val() != null) {
         endpoint += `&limit=${$("#limitSelect option:selected").val()}`
     }
 
@@ -161,12 +161,15 @@ function printResults(result, type, fav) {
             console.log("i'm in artist");
             console.log("--------------------")
             $(result).each((i, e) => {
-                console.log(e)
-                $.ajax({
-                    url: `https://itunes.apple.com/lookup?amgArtistId=${e.artistId}`,
-                    success: (artist) => printArtists(artist),
-                    error: () => console.log("fuck on id"),
-                });
+                //console.log(e);
+                if(e.wrapperType == "artist"){
+                    createArtist(e);
+                    // $.ajax({
+                    //     url: `https://itunes.apple.com/lookup?id=${e.artistId}`,
+                    //     success: (artist) => createArtist(artist),
+                    //     error: () => console.log("fuck on id"),
+                    // });
+                }
             })
             break;
 
@@ -179,10 +182,6 @@ function printResults(result, type, fav) {
                 // }
             })
     }
-}
-
-function printArtists(artist){
-    console.log(artist);
 }
 
 function logResults(result) {
