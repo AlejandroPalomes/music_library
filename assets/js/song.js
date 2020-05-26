@@ -8,7 +8,7 @@ function createSong(e, month, date){
     seconds.toString().length == 1 ? seconds = "0" + seconds : seconds;
 
     return `
-        <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}">
+        <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
                 <div class="main__target mx-3 mb-4 d-flex flex-column">
                     <div class="main__target__img">
                         <img src="${e.artworkUrl100}" alt="art img">

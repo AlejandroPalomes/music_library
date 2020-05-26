@@ -1,4 +1,4 @@
-function createSong(e, month, date){
+function createAlbum(e, month, date){
     // var time = e.trackTimeMillis/1000
     // var minutes;
     // var seconds;
@@ -8,14 +8,14 @@ function createSong(e, month, date){
     // seconds.toString().length == 1 ? seconds = "0" + seconds : seconds;
 
     return `
-        <a href="${e.collectionViewUrl}" class="result" id="${e.collectionId}">
+        <a href="${e.collectionViewUrl}" class="result" id="${e.collectionId}"  data-type="${e.collectionType}">
                 <div class="main__target mx-3 mb-4 d-flex flex-column">
                     <div class="main__target__img">
                         <img src="${e.artworkUrl100}" alt="art img">
                     </div>
                     <div class=" main__target__info d-flex flex-column justify-content-between">
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
-                            <h4 class="main__target__title">${truncate(e.collectionName, 35, true)}</h4>
+                            <h4 class="main__target__title">${truncate(e.collectionName, 30, true)}</h4>
                             <h5 class="main__target__artist">${e.artistName}</h5>
                             <h6 class="main__target__album">${truncate(e.collectionName, 30, true)}</h6>
                         </div>
@@ -25,12 +25,11 @@ function createSong(e, month, date){
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
-                            <button id="p${e.trackId}" class="main__target__preview__btn"></button>
-                            <span>${minutes}:${seconds}</span>
+                            <span>Songs: ${e.trackCount}</span>
                         </div>
                     </div>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="heart d-none" id="h${e.trackId}">
+                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="heart d-none" id="h${e.collectionId}">
                     <g>
                         <g>
                             <path class="st0" d="M256,469.5c-3.9,0-7.7-1.4-10.6-3.9c-20.7-18.1-40.8-35.3-58-49.9c-0.1-0.1-0.3-0.3-0.4-0.4
