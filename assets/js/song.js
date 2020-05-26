@@ -24,9 +24,9 @@ function createSong(e, month, date){
                             <span><span>${e.trackPrice}</span><span> ${e.currency}</span></span>
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
-                        <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
+                        <div class="px-3 mb-2 d-flex justify-content-start align-items-center">
                             <button id="p${e.trackId}" class="main__target__preview__btn"></button>
-                            <span>${minutes}:${seconds}</span>
+                            <span class="ml-3">${minutes}:${seconds}</span>
                         </div>
                     </div>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

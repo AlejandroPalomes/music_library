@@ -94,6 +94,8 @@ function getResults(iTunesURI, endpoint) {
                 $(`#h${e.currentTarget.id}`).toggleClass("d-none");
             });
 
+            heartFill();
+
             $(".main__target__preview__btn").click(e => {
                 console.log("working");
 
@@ -203,6 +205,20 @@ function heartClik(){
         saveLocalSorage(objFav);
         return false;
     })
+}
+
+function heartFill(){
+    var storage = getLocalStorage();
+            $(".result").each((i, song)=>{
+                $(storage).each((i, fav)=>{
+                    console.log(fav.trackId)
+                    console.log(song.id)
+                    if(song.id == fav.trackId){
+                        $(`#h${song.id}`).addClass("fillHeart");
+                        $(`#h${song.id} .st0`).css("fill", "red");
+                    }
+                })
+            })
 }
 
 function  checkStorage(song){

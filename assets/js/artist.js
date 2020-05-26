@@ -7,7 +7,10 @@ function createArtist(artist){
     console.log("createArtist called")
     $("#main__container").append(`
     <div id ="${artist.amgArtistId}" class="main__container__artist d-flex flex-column">
-        <a href="${artist.artistLinkUrl}" class="main__container__artist--title mb-3"><h3>${artist.artistName}</h3></a>
+        <a href="${artist.artistLinkUrl}" class="main__container__artist--title mb-4 d-flex flex-column">
+        <h3>${artist.artistName}</h3>
+        <h5 class="mb-2">${artist.primaryGenreName}</h5>
+        </a>
         <div class="main__container__artist--songs d-flex flex-wrap justify-content-between">
         </div>
     </div>
@@ -32,7 +35,7 @@ function createArtist(artist){
                 // console.log($(`#h${e.currentTarget.id}`))
                 $(`#h${e.currentTarget.id}`).toggleClass("d-none");
             });
-
+            heartFill();
             heartClik();
         }
     });

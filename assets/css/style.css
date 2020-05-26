@@ -161,15 +161,12 @@ input::placeholder{
 .heart{
     position: absolute;
     /* fill: rgb(227, 239, 252); */
-    top: 10px;
+    bottom: 10px;
     right: 10px;
     height: 23px;
     width: 23px;
     transition: 0.3s ease;
     fill: rgb(28, 135, 252);
-}
-.st0{
-    fill: none;
 }
 
 .heart:hover{
@@ -184,8 +181,12 @@ input::placeholder{
     transition: 0.3s ease;
 }
 
-.heartActive{
-    /* fill: red; */
+.st0{
+    fill: none;
+}
+
+.fillHeart{
+    fill: red;
 }
 
 .main__container__artist{
@@ -197,6 +198,15 @@ input::placeholder{
     display: inline;
     color: rgb(40, 42, 58);
     border-bottom: 2px solid rgb(40, 42, 58);
+}
+
+.main__container__artist--title h5{
+    font-size: 16px;
+    color: rgba(40, 42, 58, 0.6);
+}
+
+a.main__container__artist--title:hover{
+    color: rgba(40, 42, 58);
 }
 
 /*? FOOTER START  ?*/
