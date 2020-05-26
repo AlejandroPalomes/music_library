@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s ease;
     cursor: pointer;
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .main__target:hover{
@@ -107,4 +108,31 @@ input::placeholder{
 .main__target__preview__btn:hover{
     transform: scale(1.1);
     transition: 0.3s ease;
+}
+
+.heart{
+    position: absolute;
+    fill: rgb(28, 135, 252);
+    top: 10px;
+    right: 10px;
+    /* transform: scale(0.2); */
+    height: 25px;
+    width: 25px;
+    transition: 0.3s ease;
+}
+
+.heart:hover{
+    transform: scale(1.2);
+    fill: red;
+    transition: 0.3s ease;
+}
+
+.heart:active{
+    transform: scale(0.85);
+    stroke: red;
+    transition: 0.3s ease;
+}
+
+.heartActive{
+    fill: red;
 }
