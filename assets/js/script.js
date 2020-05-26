@@ -138,7 +138,6 @@ function printResults(result, type) {
                 success: (result) => console.log(JSON.parse(result).results),
                 error: () => console.log("fuck on id")
             });
-
         })
     }
 }
@@ -151,7 +150,6 @@ function getLocalStorage() {
     tempLocalStorage = JSON.parse(localStorage.getItem("favMusic"))
     return tempLocalStorage;
 }
-
 
 function saveLocalSorage(obj) {
     let storage = getLocalStorage()
