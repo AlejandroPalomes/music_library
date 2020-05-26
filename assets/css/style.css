@@ -190,7 +190,13 @@ input::placeholder{
 
 .main__container__artist{
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+}
+
+.main__container__artist--title{
+    display: inline;
+    color: rgb(40, 42, 58);
+    border-bottom: 2px solid rgb(40, 42, 58);
 }
 
 /*? FOOTER START  ?*/
