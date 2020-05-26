@@ -19,30 +19,41 @@ $.ajax({
 })
 
 
-$(document).ready(() => {
+function favLoad() {
     var fav = getLocalStorage();
+    var count = $(fav).length;
+    console.log(count)
+
     $(fav).each((i, e) => {
-        var id;
-        if(e.type == "song") id= e.trackId;
-        if(e.type == "Album") id= e.trackId;
+        // var id;
+        // if(e.type == "song") id= e.trackId;
+        // if(e.type == "Album") id= e.trackId;
         $.ajax({
-            url: "https://itunes.apple.com/lookup?id=" + id,
+            url: "https://itunes.apple.com/lookup?id=" + e.trackId,
             dataType: "jsonp",
             success: (track) => {
                 printResults(track.results[0], e.type, true);
             },
-            complete: ()=> {
-                $(".result").hover((e) => {
-                    $(`#h${e.currentTarget.id}`).toggleClass("d-none");
-                });
-                heartFill();
-                heartClik();
-
+            complete: () => {
+                if (i === count-1) {
+                    // this will be executed at the end of the loop
+                    $(".result").hover((e) => {
+                        console.log("hover")
+                        $(`#h${e.currentTarget.id}`).toggleClass("d-none");
+                    });
+                    heartFill();
+                    $(".main__target__preview__btn").click(e => {
+                        console.log("working");
+                        return false;
+                    })
+                    heartClik();
+                }
             }
-            // complete: (result, res)=> console.log(res)
         })
     })
-})
+}
+
+favLoad();
 
 
 
@@ -179,14 +190,14 @@ function heartClik(){
 
 function heartFill(){
     var storage = getLocalStorage();
-            $(".result").each((i, song)=>{
-                $(storage).each((i, fav)=>{
-                    if(song.id == fav.trackId){
-                        $(`#h${song.id}`).addClass("fillHeart");
-                        $(`#h${song.id} .st0`).css("fill", "red");
-                    }
-                })
-            })
+    $(".result").each((i, song)=>{
+        $(storage).each((i, fav)=>{
+            if(song.id == fav.trackId){
+                $(`#h${song.id}`).addClass("fillHeart");
+                $(`#h${song.id} .st0`).css("fill", "red");
+            }
+        })
+    })
 }
 
 function  checkStorage(song){
