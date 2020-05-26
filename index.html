@@ -12,31 +12,39 @@
 </head>
 
 <body>
+    <header class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-md-row flex-column align-items-center justify-content-between">
+            <h1>Awesome Music</h1>
+            <h4>Listen to your fav artists :)</h4>
+        </div>
+    </header>
+    <div>
+        <select name="" id="fieldSelect">
+            <option value="" selected disabled>Choose a category</option>
+            <option value="song">Songs</option>
+            <option value="allArtist">Artists</option>
+            <option value="album">Album</option>
+            <option value="musicVideo">Video</option>
+        </select>
+        <!-- <input type="text" id="inputMusic" value="" placeholder="Search Music"> -->
+        <input type="text" id="inputArtist" value="" placeholder="Serach">
+        <!-- <input type="text" id="inputAlbum" value="" placeholder="Search Album">
+        <input type="text" id="inputVideo" value="" placeholder="Search video"> -->
+    
+        <select name="test" id="countrySelect">
+            <option value="" selected disabled>Choose a Country</option>
+        </select>
+    
+        <label for="">explicit</label>
+        <input type="checkbox" name="" id="explicit">
+        <select name="" id="limitSelect">
+            <option selected disabled value="">Limit results</option>
+            <option value="10">10</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+        </select>
 
-    <select name="" id="fieldSelect">
-        <option value="" selected disabled>Choose a category</option>
-        <option value="song">Songs</option>
-        <option value="allArtist">Artists</option>
-        <option value="album">Album</option>
-        <option value="musicVideo">Video</option>
-    </select>
-    <!-- <input type="text" id="inputMusic" value="" placeholder="Search Music"> -->
-    <input type="text" id="inputArtist" value="" placeholder="Serach Artist">
-    <!-- <input type="text" id="inputAlbum" value="" placeholder="Search Album">
-    <input type="text" id="inputVideo" value="" placeholder="Search video"> -->
-
-    <select name="test" id="countrySelect">
-        <option value="" selected disabled>Choose a Country</option>
-    </select>
-
-    <label for="">explicit</label>
-    <input type="checkbox" name="" id="explicit">
-    <select name="" id="limitSelect">
-        <option selected disabled value="">Limit results</option>
-        <option value="10">10</option>
-        <option value="100">100</option>
-        <option value="200">200</option>
-    </select>
+    </div>
 
     <div id="main__container"
         class=" d-flex flex-row justify-content-md-between justify-content-around my-5 mx-3 flex-wrap">
@@ -88,88 +96,6 @@
             </div>
         </a>
 
-        <!--
-        <div class="main__target mx-3 mb-4">
-            <div class="main__target__img">
-                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
-            </div>
-            <div>
-                <h4>Name of the song</h4>
-                <h5>Artist name</h5>
-                <h6>Album name</h6>
-            </div>
-            <div>
-                <span>Release date</span>
-                <a href="http://"><span>Price</span></a>
-            </div>
-            <span>Genere</span>
-            <div>
-                <button>Play</button>
-                <span>Song length</span>
-            </div>
-        </div>
-
-        <div class="main__target mx-3 mb-4">
-            <div class="main__target__img">
-                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
-            </div>
-            <div>
-                <h4>Name of the song</h4>
-                <h5>Artist name</h5>
-                <h6>Album name</h6>
-            </div>
-            <div>
-                <span>Release date</span>
-                <a href="http://"><span>Price</span></a>
-            </div>
-            <span>Genere</span>
-            <div>
-                <button>Play</button>
-                <span>Song length</span>
-            </div>
-        </div>
-
-        <div class="main__target mx-3 mb-4">
-            <div class="main__target__img">
-                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
-            </div>
-            <div>
-                <h4>Name of the song</h4>
-                <h5>Artist name</h5>
-                <h6>Album name</h6>
-            </div>
-            <div>
-                <span>Release date</span>
-                <a href="http://"><span>Price</span></a>
-            </div>
-            <span>Genere</span>
-            <div>
-                <button>Play</button>
-                <span>Song length</span>
-            </div>
-        </div>
-
-        <div class="main__target mx-3 mb-4">
-            <div class="main__target__img">
-                <img src="assets/img/PROFILE-PIC.jpg" alt="art img">
-            </div>
-            <div>
-                <h4>Name of the song</h4>
-                <h5>Artist name</h5>
-                <h6>Album name</h6>
-            </div>
-            <div>
-                <span>Release date</span>
-                <a href="http://"><span>Price</span></a>
-            </div>
-            <span>Genere</span>
-            <div>
-                <button>Play</button>
-                <span>Song length</span>
-            </div>
-        </div> -->
-
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -182,6 +108,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/song.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 

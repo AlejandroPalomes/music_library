@@ -28,6 +28,20 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
+/*? HEADER START  */
+
+header{
+    height: 100px;
+    margin-bottom: 50px;
+    background-color: rgb(36, 39, 49);
+    color: white;
+}
+
+header > div{
+    width: 85%;
+}
+ /*? HEADER END */
+
 .main__target{
     /* border: 1px solid rgb(124, 124, 124); */
     background-color: white;
