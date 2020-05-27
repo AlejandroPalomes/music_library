@@ -68,18 +68,18 @@ button:focus{
 }
 
 #collapseControls{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
 }
 
-#play{
+#play, #pauseBtn{
     fill: red;
     width: 20px;
     height: 20px;
     overflow: hidden;
 }
 
-#fast-b__button{
+#fast-b__button, #play__button, #fast-f__button{
     background: none;
 }
 
@@ -97,7 +97,41 @@ button:focus{
     overflow: hidden;
 }
 
-.st0{
+#volume{
+    fill: red;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.hp_slide{
+    width:100%;
+    background:rgb(87, 87, 87);
+    height:5px;
+    position: absolute;
+    bottom: 0;
+}
+.hp_range{
+    width:0;
+    background:rgb(212, 212, 212);
+    height:5px;
+    position: relative;
+    overflow: visible;
+}
+
+.hp_range::after{
+    content: "";
+    width: 4px;
+    height: 5px;
+    /* border-radius: 2px; */
+    background: rgb(28, 135, 252);
+    /* border: 1px solid yellow; */
+    position: absolute;
+    right: 0;
+    top: 0px
+}
+
+.stB{
     /* fill:#F4F4F4; */
     fill:red;
 }
@@ -120,6 +154,8 @@ button:focus{
 
 .main__controls__display--info{
     width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 .main__controls__display--title{
     color: #F4F4F4;
@@ -128,10 +164,38 @@ button:focus{
 .main__controls__display--artist{
     color: rgb(155,155,161);
     font-size: 15px;
+    width: 500px;
 }
 
 #main__controls__volume{
-    width: 110px;
+    width: 120px;
+}
+
+.volume-slider-con{
+    height:3px;
+    width:70%;
+    position:relative;
+    background-color: rgb(72, 72, 72);
+    border-radius: 20px;
+}
+
+.volume-slider{
+    border-radius: 20px;
+    height:100%;
+    width:100%;
+    position:relative;
+    background-color:rgb(169, 169, 169);
+}
+
+.volume-slider:after{
+    content:"";
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: rgb(195, 195, 195);
+    position: absolute;
+    right: -7px;
+    top: -5px;
 }
 
 .main__search-bar{

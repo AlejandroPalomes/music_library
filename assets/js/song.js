@@ -2,6 +2,8 @@ function createSong(e, month, date){
     var time = e.trackTimeMillis/1000
     var minutes;
     var seconds;
+    var cover =  e.artworkUrl100;
+    cover = cover.replace("100x100bb", "500x500bb");
 
     (time/60)<1 ? minutes = "00" : minutes = (Math.floor(time/60));
     (time)>60 ? seconds = Math.floor(time)-(60*Math.floor((time/60))) : seconds = Math.floor(time/60);
@@ -11,7 +13,7 @@ function createSong(e, month, date){
         <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
                 <div class="main__target mx-3 mb-5 d-flex flex-column">
                     <div class="main__target__img">
-                        <img src="${e.artworkUrl100}" alt="art img">
+                        <img src="${cover}" alt="art img">
                     </div>
                     <div class=" main__target__info d-flex flex-column justify-content-between">
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
@@ -25,7 +27,7 @@ function createSong(e, month, date){
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-start align-items-center">
-                            <button id="p${e.trackId}" class="main__target__preview__btn" data-preview="${e.previewUrl}" data-cover="${e.artworkUrl100}" data-title="${e.trackName}" data-artist="${e.artistName}" data-album="${e.collectionName}"></button>
+                            <button id="p${e.trackId}" class="main__target__preview__btn" data-preview="${e.previewUrl}" data-cover="${cover}" data-title="${e.trackName}" data-artist="${e.artistName}" data-album="${e.collectionName}"></button>
                             <span class="ml-3">${minutes}:${seconds}</span>
                         </div>
                     </div>

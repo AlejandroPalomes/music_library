@@ -44,7 +44,6 @@ function createArtist(artist){
                     document.querySelector("#audioPlayer").pause();
                     $("#audioPlayer").data("paused", true);
                 };
-                $('#toggleControls').click();
                 return false;
             })
             heartFill();
@@ -97,7 +96,6 @@ function createArtist(artist){
 //         }
 
 //         ;
-//         $('#toggleControls').click();
 //         return false;
 //       });
 //       heartFill();

@@ -17,6 +17,78 @@ $.ajax({
     },
 })
 
+
+//volume control START
+
+var e = document.querySelector('.volume-slider-con');
+var eInner = document.querySelector('.volume-slider');
+var audio = document.querySelector('audio');
+var drag = false;
+e.addEventListener('mousedown',function(ev){
+   drag = true;
+   updateBar(ev.clientX);
+});
+document.addEventListener('mousemove',function(ev){
+   if(drag){
+      updateBar(ev.clientX);
+   }
+});
+document.addEventListener('mouseup',function(ev){
+ drag = false;
+});
+var updateBar = function (x, vol) {
+   var volume = e;
+        var percentage;
+        //if only volume have specificed
+        //then direct update volume
+        if (vol) {
+            percentage = vol * 100;
+        } else {
+            var position = x - volume.offsetLeft;
+            percentage = 100 * position / volume.clientWidth;
+        }
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        //update volume bar and video volume
+        eInner.style.width = percentage +'%';
+        audio.volume = percentage / 100;
+};
+
+$("#play__button").click(function(e){
+    if(document.querySelector("#audioPlayer").paused){
+        $("#play").addClass("d-none");
+        $("#pauseBtn").removeClass("d-none");
+        document.querySelector("#audioPlayer").play();
+    } else{
+        $("#pauseBtn").addClass("d-none");
+        $("#play").removeClass("d-none");
+        document.querySelector("#audioPlayer").pause();
+    }
+    console.log("working");
+})
+
+// var player = document.getElementById('player');
+audio.addEventListener("timeupdate", function() {
+    var currentTime = audio.currentTime;
+    var duration = audio.duration;
+    $('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+    console.log(currentTime)
+    if(currentTime >= 29.976960){
+        console.log("it worked bitch")
+        $('.hp_range').animate({"width": "0"}, 1, 'linear');
+        $("#pauseBtn").addClass("d-none");
+        $("#play").removeClass("d-none");
+    }
+});
+
+// volume control END
+
 function favLoad() {
     var fav = getLocalStorage();
     $("#main__container").empty();
@@ -32,14 +104,16 @@ function favLoad() {
             complete: () => {
                 $(`#p${e.trackId}`).click(a => {
                     $("#audioPlayer").prop("src", $(`#p${e.trackId}`).data("preview"))
-                    if($("#audioPlayer").data("paused")==true){
-                        document.querySelector("#audioPlayer").play();
-                        $("#audioPlayer").data("paused", false);
-                    }else{
-                        document.querySelector("#audioPlayer").pause();
-                        $("#audioPlayer").data("paused", true);
-                    };
-                    $('#toggleControls').click();
+                    document.querySelector("#audioPlayer").play();
+                    // if($("#audioPlayer").data("paused")==true){
+                    //     document.querySelector("#audioPlayer").play();
+                    //     $("#audioPlayer").data("paused", false);
+                    // }else{
+                    //     document.querySelector("#audioPlayer").pause();
+                    //     $("#audioPlayer").data("paused", true);
+                    // };
+                    $("#pauseBtn").removeClass("d-none");
+                    $("#play").addClass("d-none");
                     $('#display__title').text($(`#p${e.trackId}`).data("title"));
                     $('#display__album').text($(`#p${e.trackId}`).data("album"));
                     $('#display__artist').text($(`#p${e.trackId}`).data("artist"));
@@ -120,14 +194,20 @@ function getResults(iTunesURI, endpoint) {
 
             $(".main__target__preview__btn").click(e => {
                 $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
-                if($("#audioPlayer").data("paused")==true){
-                    document.querySelector("#audioPlayer").play();
-                    $("#audioPlayer").data("paused", false);
-                }else{
-                    document.querySelector("#audioPlayer").pause();
-                    $("#audioPlayer").data("paused", true);
-                };
-                $('#toggleControls').click();
+                document.querySelector("#audioPlayer").play();
+                // if($("#audioPlayer").data("paused")==true){
+                //     document.querySelector("#audioPlayer").play();
+                //     $("#audioPlayer").data("paused", false);
+                // }else{
+                //     document.querySelector("#audioPlayer").pause();
+                //     $("#audioPlayer").data("paused", true);
+                // };
+                $("#pauseBtn").removeClass("d-none");
+                $("#play").addClass("d-none");
+                $('#display__title').text($(e.currentTarget).data("title"));
+                $('#display__album').text($(e.currentTarget).data("album"));
+                $('#display__artist').text($(e.currentTarget).data("artist"));
+                $('#display__cover').prop("src", $(e.currentTarget).data("cover"));
                 return false;
             })
 
@@ -316,8 +396,6 @@ function removeSong(storage, element) {
 //           }
 
 //           ;
-//           $('#toggleControls').click();
-//           $('#toggleControls').text();
 //           return false;
 //         });
 //         $("#" + e.trackId).hover(function (a) {
@@ -396,7 +474,6 @@ function removeSong(storage, element) {
 //         }
 
 //         ;
-//         $('#toggleControls').click();
 //         return false;
 //       });
 //       heartClik();

@@ -6,12 +6,14 @@ function createAlbum(e, month, date){
     // (time/60)<1 ? minutes = "00" : minutes = (Math.floor(time/60));
     // (time)>60 ? seconds = Math.floor(time)-(60*Math.floor((time/60))) : seconds = Math.floor(time/60);
     // seconds.toString().length == 1 ? seconds = "0" + seconds : seconds;
+    var cover =  e.artworkUrl100;
+    cover = cover.replace("100x100bb", "500x500bb");
 
     return `
         <a href="${e.collectionViewUrl}" class="result" id="${e.collectionId}"  data-type="${e.collectionType}">
                 <div class="main__target mx-3 mb-4 d-flex flex-column">
                     <div class="main__target__img">
-                        <img src="${e.artworkUrl100}" alt="art img">
+                        <img src="${cover}" alt="art img">
                     </div>
                     <div class=" main__target__info d-flex flex-column justify-content-between">
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
