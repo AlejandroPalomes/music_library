@@ -14,98 +14,125 @@
 
 <body>
     <div class="general d-flex flex-column justify-content-between">
-        <header class="align-items-center justify-content-center d-none">
-            <div class="d-flex flex-md-row flex-column align-items-center justify-content-between">
-                <h1>Awesome Music</h1>
-                <h4>Listen to your fav artists :)</h4>
-            </div>
-        </header>
         <div class="main d-flex flex-column align-items-center justify-content-between">
             <div class="main__controls__container mb-5" id="collapseControls">
                 <div class="d-flex justify-content-around">
                     <div class="main__controls__conrols d-flex align-items-center justify-content-between mt-2">
                         <button id="fast-b__button">
-                            <svg version="1.1" id="fast-b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                            <g><g>
-                                    <path class="stB" d="M7.8,272.5l234.7,192c6.4,5.2,15.2,6.3,22.7,2.8c7.4-3.5,12.2-11.1,12.2-19.3V301l199.8,163.5
+                            <svg version="1.1" id="fast-b" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path class="stB" d="M7.8,272.5l234.7,192c6.4,5.2,15.2,6.3,22.7,2.8c7.4-3.5,12.2-11.1,12.2-19.3V301l199.8,163.5
                                         c6.4,5.2,15.2,6.3,22.7,2.8c7.4-3.5,12.2-11.1,12.2-19.3V64c0-8.2-4.8-15.7-12.2-19.3c-2.9-1.4-6.1-2-9.2-2
                                         c-4.8,0-9.6,1.6-13.5,4.8L277.3,211V64c0-8.2-4.8-15.7-12.2-19.3c-2.9-1.4-6.1-2-9.2-2c-4.8,0-9.6,1.6-13.5,4.8L7.8,239.5
-                                        C2.9,243.5,0,249.6,0,256C0,262.4,2.9,268.5,7.8,272.5z"/>
-                                </g></g>
+                                        C2.9,243.5,0,249.6,0,256C0,262.4,2.9,268.5,7.8,272.5z" />
+                                    </g>
+                                </g>
                             </svg>
                         </button>
 
                         <button id="play__button">
-                            <svg id="play" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;" xml:space="preserve">
-                                <path class="stB" d="M295.8,146L39.8,2c-5-2.8-11-2.7-15.9,0.1C19,5.1,16,10.3,16,16v288c0,5.7,3,10.9,7.9,13.8
-                                    c2.5,1.4,5.3,2.2,8.1,2.2c2.7,0,5.4-0.7,7.8-2l256-144c5-2.8,8.2-8.2,8.2-14S300.9,148.9,295.8,146z"/>
+                            <svg id="play" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 320 320"
+                                style="enable-background:new 0 0 320 320;" xml:space="preserve">
+                                <path class="stB"
+                                    d="M295.8,146L39.8,2c-5-2.8-11-2.7-15.9,0.1C19,5.1,16,10.3,16,16v288c0,5.7,3,10.9,7.9,13.8
+                                    c2.5,1.4,5.3,2.2,8.1,2.2c2.7,0,5.4-0.7,7.8-2l256-144c5-2.8,8.2-8.2,8.2-14S300.9,148.9,295.8,146z" />
                             </svg>
-                            <svg id="pauseBtn" class="d-none" version="1.1"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <svg id="pauseBtn" class="d-none" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <style type="text/css">
-                                    .stPa{fill:#F4F4F4;}
+                                    .stPa {
+                                        fill: #F4F4F4;
+                                    }
                                 </style>
-                                <g><g>
-                                    <path class="stPa" d="M181.3,0H74.7c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h106.7c17.6,0,32-14.4,32-32V32
-                                        C213.3,14.4,199,0,181.3,0z"/>
-                                </g></g>
-                                <g><g>
-                                    <path class="stPa" d="M437.3,0H330.7c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h106.7c17.6,0,32-14.4,32-32V32
-                                        C469.3,14.4,455,0,437.3,0z"/>
-                                </g></g>
+                                <g>
+                                    <g>
+                                        <path class="stPa" d="M181.3,0H74.7c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h106.7c17.6,0,32-14.4,32-32V32
+                                        C213.3,14.4,199,0,181.3,0z" />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path class="stPa" d="M437.3,0H330.7c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h106.7c17.6,0,32-14.4,32-32V32
+                                        C469.3,14.4,455,0,437.3,0z" />
+                                    </g>
+                                </g>
                             </svg>
                         </button>
                         <button id="fast-b__button">
-                            <svg version="1.1" id="fast-f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                            <style type="text/css">
-                                .stB{fill:#F4F4F4;}
-                            </style>
-                            <g>
+                            <svg version="1.1" id="fast-f" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <style type="text/css">
+                                    .stB {
+                                        fill: #F4F4F4;
+                                    }
+                                </style>
                                 <g>
-                                    <path class="stB" d="M504.2,239.5l-234.7-192c-6.4-5.2-15.2-6.3-22.7-2.8c-7.4,3.5-12.2,11.1-12.2,19.3v147L34.8,47.5
+                                    <g>
+                                        <path class="stB" d="M504.2,239.5l-234.7-192c-6.4-5.2-15.2-6.3-22.7-2.8c-7.4,3.5-12.2,11.1-12.2,19.3v147L34.8,47.5
                                         c-6.4-5.2-15.2-6.3-22.7-2.8C4.8,48.3,0,55.8,0,64v384c0,8.2,4.8,15.7,12.2,19.3c2.9,1.4,6.1,2,9.2,2c4.8,0,9.6-1.6,13.5-4.8
                                         L234.7,301v147c0,8.2,4.8,15.7,12.2,19.3c2.9,1.4,6.1,2,9.2,2c4.8,0,9.6-1.6,13.5-4.8l234.7-192c4.9-4.1,7.8-10.1,7.8-16.5
-                                        S509.1,243.5,504.2,239.5z"/>
+                                        S509.1,243.5,504.2,239.5z" />
+                                    </g>
                                 </g>
-                            </g>
                             </svg>
                         </button>
                     </div>
                     <div id="main__controls__display" class="d-sm-flex d-none">
-                        <img  id="display__cover" src="assets/img/PROFILE-PIC.jpg" alt="artwork" height="63">
-                        <div class="d-flex flex-column justify-content-center align-items-center main__controls__display--info">
-                            <span class="main__controls__display--title"  id="display__title">Song title</span>
-                            <span class="main__controls__display--artist"><span  id="artistInfo" class="d-flex justify-content-center"><span id="display__artist">Artist</span>⁠ —⁠ <span id="display__album">Album</span></span>
-                            <div class="hp_slide">
-                                <div class="hp_range"></div>
-                           </div>
+                        <img id="display__cover" src="assets/img/PROFILE-PIC.jpg" alt="artwork" height="63">
+                        <div
+                            class="d-flex flex-column justify-content-center align-items-center main__controls__display--info">
+                            <span class="main__controls__display--title" id="display__title">Song title</span>
+                            <span class="main__controls__display--artist"><span id="artistInfo"
+                                    class="d-flex justify-content-center"><span id="display__artist">Artist</span>⁠ —⁠
+                                    <span id="display__album">Album</span></span>
+                                <div class="hp_slide">
+                                    <div class="hp_range"></div>
+                                </div>
                         </div>
                     </div>
                     <div id="main__controls__volume" class="d-sm-flex d-none align-items-center">
-                        <svg version="1.1" id="volume" class="mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 477.5 477.5" style="enable-background:new 0 0 477.5 477.5;" xml:space="preserve">
+                        <svg version="1.1" id="volume" class="mr-2" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.5 477.5"
+                            style="enable-background:new 0 0 477.5 477.5;" xml:space="preserve">
                             <style type="text/css">
-                                .stS{fill:rgb(155, 151, 161);}
+                                .stS {
+                                    fill: rgb(155, 151, 161);
+                                }
                             </style>
-                            <g><g>
-                                <path class="stS" d="M213.3,104.5c-5.3-3-11.8-3-17.1,0l-115.5,66H17.1c-9.4,0-17.1,7.6-17.1,17.1v102.4c0,9.4,7.6,17.1,17.1,17.1
-                                    h63.7l115.5,66c8.2,4.7,18.6,1.8,23.3-6.4c1.5-2.6,2.2-5.5,2.2-8.5V119.2C221.9,113.1,218.6,107.5,213.3,104.5z"/>
-                            </g></g>
-                            <g><g>
-                                <path class="stS" d="M286.4,176.8c-5.9-7.3-16.6-8.5-24-2.6c-7.3,5.9-8.5,16.6-2.6,24c0,0,0,0,0,0c17.6,24.1,17.6,56.9,0,81
-                                    c-5.9,7.3-4.8,18.1,2.5,24c7.3,6,18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C314.3,264,314.3,213.3,286.4,176.8z"/>
-                            </g></g>
-                            <g><g>
-                                <path class="stS" d="M354.6,125.6c-5.9-7.3-16.6-8.5-24-2.6c-7.3,5.9-8.5,16.6-2.6,24c0,0,0,0,0,0c40.7,54.4,40.7,129,0,183.4
-                                    c-6,7.3-4.8,18.1,2.5,24c7.3,6,18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C404.8,284.7,404.8,192.7,354.6,125.6z"/>
-                            </g></g>
-                            <g><g>
-                                <path class="stS" d="M422.9,74.4c-6-7.3-16.7-8.4-24-2.5c-7.3,5.9-8.4,16.5-2.6,23.9c63.4,84.7,63.4,201.1,0,285.8
-                                    c-6,7.3-4.8,18.1,2.5,24s18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C495.7,305.6,495.7,171.8,422.9,74.4z"/>
-                            </g></g>
+                            <g>
+                                <g>
+                                    <path class="stS"
+                                        d="M213.3,104.5c-5.3-3-11.8-3-17.1,0l-115.5,66H17.1c-9.4,0-17.1,7.6-17.1,17.1v102.4c0,9.4,7.6,17.1,17.1,17.1
+                                    h63.7l115.5,66c8.2,4.7,18.6,1.8,23.3-6.4c1.5-2.6,2.2-5.5,2.2-8.5V119.2C221.9,113.1,218.6,107.5,213.3,104.5z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path class="stS"
+                                        d="M286.4,176.8c-5.9-7.3-16.6-8.5-24-2.6c-7.3,5.9-8.5,16.6-2.6,24c0,0,0,0,0,0c17.6,24.1,17.6,56.9,0,81
+                                    c-5.9,7.3-4.8,18.1,2.5,24c7.3,6,18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C314.3,264,314.3,213.3,286.4,176.8z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path class="stS"
+                                        d="M354.6,125.6c-5.9-7.3-16.6-8.5-24-2.6c-7.3,5.9-8.5,16.6-2.6,24c0,0,0,0,0,0c40.7,54.4,40.7,129,0,183.4
+                                    c-6,7.3-4.8,18.1,2.5,24c7.3,6,18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C404.8,284.7,404.8,192.7,354.6,125.6z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path class="stS"
+                                        d="M422.9,74.4c-6-7.3-16.7-8.4-24-2.5c-7.3,5.9-8.4,16.5-2.6,23.9c63.4,84.7,63.4,201.1,0,285.8
+                                    c-6,7.3-4.8,18.1,2.5,24s18.1,4.8,24-2.5c0,0,0.1-0.1,0.1-0.1C495.7,305.6,495.7,171.8,422.9,74.4z" />
+                                </g>
+                            </g>
                         </svg>
                         <div class="volume-slider-con">
                             <div class="volume-slider"></div>
@@ -114,7 +141,7 @@
                     <!-- <audio id="audioPlayer" src="" data-paused="true" controls class="mb-0"></audio> -->
                     <audio id="audioPlayer" src="" data-paused="true" class="mb-0"></audio>
                 </div>
-              </div>
+            </div>
             <div class="main__search-bar d-flex align-items-center justify-content-between">
                 <select name="" id="fieldSelect">
                     <option value="" selected disabled>Category</option>
@@ -123,15 +150,13 @@
                     <option value="album">Album</option>
                     <option value="musicVideo">Video</option>
                 </select>
-                <!-- <input type="text" id="inputMusic" value="" placeholder="Search Music"> -->
+
                 <input type="text" id="inputArtist" value="" placeholder="Serach">
-                <!-- <input type="text" id="inputAlbum" value="" placeholder="Search Album">
-                <input type="text" id="inputVideo" value="" placeholder="Search video"> -->
-            
+
                 <select name="test" id="countrySelect">
                     <option value="" selected disabled>Country</option>
                 </select>
-            
+
                 <label class="mb-0" for="">Explicit
                     <input type="checkbox" name="" id="explicit">
                 </label>
@@ -141,7 +166,7 @@
                     <option value="100">100</option>
                     <option value="200">200</option>
                 </select>
-        
+
             </div>
 
             <div id="main__container"
@@ -164,13 +189,16 @@
         </footer>
     </div>
     <button id="videoModalBtn" type="button" class="d-none" data-toggle="modal" data-target="#videoModal"></button>
-    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
-                <video id="videoPreview" width="1280" height="720" class="preview__video" src="https://video-ssl.itunes.apple.com/itunes-assets/Video113/v4/0d/b4/83/0db483b4-aa40-c7d7-2aaa-3876a780fa5c/mzvf_2706812862443658313.640x478.h264lc.U.p.m4v" controls></video>
+                <video id="videoPreview" width="1280" height="720" class="preview__video"
+                    src="https://video-ssl.itunes.apple.com/itunes-assets/Video113/v4/0d/b4/83/0db483b4-aa40-c7d7-2aaa-3876a780fa5c/mzvf_2706812862443658313.640x478.h264lc.U.p.m4v"
+                    controls></video>
             </div>
         </div>
-      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
