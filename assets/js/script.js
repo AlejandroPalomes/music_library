@@ -25,7 +25,9 @@ function favLoad() {
             url: "https://itunes.apple.com/lookup?id=" + e.trackId,
             dataType: "jsonp",
             success: (track) => {
+
                 printResults(track.results[0], e.type, true);
+
             },
             complete: () => {
                 $(`#p${e.trackId}`).click(a => {
@@ -38,8 +40,10 @@ function favLoad() {
                         $("#audioPlayer").data("paused", true);
                     };
                     $('#toggleControls').click();
+                    $('#toggleControls').text();
 
                     return false;
+
                 })
 
                 $(`#${e.trackId}`).hover((a) => {

@@ -120,6 +120,18 @@ button:focus{
     border-radius: 2px;
 }
 
+.main__controls__display--info{
+    width: 100%;
+}
+.main__controls__display--title{
+    color: #F4F4F4;
+    font-size: 15px;
+}
+.main__controls__display--artist{
+    color: rgb(155,155,161);
+    font-size: 15px;
+}
+
 #main__controls__volume{
     width: 110px;
 }
