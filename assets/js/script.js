@@ -105,22 +105,23 @@ function favLoad() {
                 $(`#p${e.trackId}`).click(a => {
                     $("#audioPlayer").prop("src", $(`#p${e.trackId}`).data("preview"))
                     document.querySelector("#audioPlayer").play();
-                    // if($("#audioPlayer").data("paused")==true){
-                    //     document.querySelector("#audioPlayer").play();
-                    //     $("#audioPlayer").data("paused", false);
-                    // }else{
-                    //     document.querySelector("#audioPlayer").pause();
-                    //     $("#audioPlayer").data("paused", true);
-                    // };
                     $("#pauseBtn").removeClass("d-none");
                     $("#play").addClass("d-none");
                     $('#display__title').text($(`#p${e.trackId}`).data("title"));
                     $('#display__album').text($(`#p${e.trackId}`).data("album"));
                     $('#display__artist').text($(`#p${e.trackId}`).data("artist"));
                     $('#display__cover').prop("src", $(`#p${e.trackId}`).data("cover"));
+                    if ($('.main__controls__display--artist')[0].scrollWidth >  $('.main__controls__display--artist').innerWidth()) {
+                        //Text has over-flown
+                        $('#artistInfo').animate({
+                            'left':0
+                        },
+                        {},
+                        3000,'linear');
+
+                    }
 
                     return false;
-
                 })
 
                 $(`#${e.trackId}`).hover((a) => {
@@ -195,13 +196,6 @@ function getResults(iTunesURI, endpoint) {
             $(".main__target__preview__btn").click(e => {
                 $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
                 document.querySelector("#audioPlayer").play();
-                // if($("#audioPlayer").data("paused")==true){
-                //     document.querySelector("#audioPlayer").play();
-                //     $("#audioPlayer").data("paused", false);
-                // }else{
-                //     document.querySelector("#audioPlayer").pause();
-                //     $("#audioPlayer").data("paused", true);
-                // };
                 $("#pauseBtn").removeClass("d-none");
                 $("#play").addClass("d-none");
                 $('#display__title').text($(e.currentTarget).data("title"));

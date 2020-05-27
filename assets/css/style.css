@@ -109,7 +109,7 @@ button:focus{
     background:rgb(87, 87, 87);
     height:5px;
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
 }
 .hp_range{
     width:0;
@@ -164,7 +164,9 @@ button:focus{
 .main__controls__display--artist{
     color: rgb(155,155,161);
     font-size: 15px;
-    width: 500px;
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
 }
 
 #main__controls__volume{
