@@ -179,7 +179,7 @@ function updateSearch() {
     getResults(iTunesURI, endpoint);
 }
 
-//Request the results 
+//Request the results
 function getResults(iTunesURI, endpoint) {
     $.ajax({
         url: iTunesURI,
