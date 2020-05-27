@@ -20,12 +20,13 @@
             </div>
         </header>
         <div class="main d-flex flex-column align-items-center justify-content-between">
-            <button class="btn btn-primary d-none" id="toggleControls" type="button" data-toggle="collapse" data-target="#collapseControls" aria-expanded="false" aria-controls="collapseControls">
+            <button class="btn btn-primary d-none mb-0" id="toggleControls" type="button" data-toggle="collapse" data-target="#collapseControls" aria-expanded="false" aria-controls="collapseControls">
               </button>
 
-            <div class="collapse main__controls__container" id="collapseControls">
+            <!-- <div class="collapse main__controls__container" id="collapseControls"> -->
+            <div class="main__controls__container" id="collapseControls">
                 <div class="d-flex justify-content-around">
-                    <div class="main__controls__conrols">
+                    <div class="main__controls__conrols d-flex align-items-center justify-content-between mt-2">
                         <!-- <svg version="1.1" id="pause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve"><g><g>
                             <path d="M181.333,0H74.667c-17.643,0-32,14.357-32,32v448c0,17.643,14.357,32,32,32h106.667c17.643,0,32-14.357,32-32V32
@@ -34,15 +35,51 @@
                                 C469.333,14.357,454.976,0,437.333,0z"/>
                             </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                         </svg> -->
-                        <svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            viewBox="0 0 2000 2000" style="enable-background:new 0 0 2000 2000;" xml:space="preserve">
-                            <path d="M295.84,146.049l-256-144c-4.96-2.784-11.008-2.72-15.904,0.128C19.008,5.057,16,10.305,16,16.001v288
-                            c0,5.696,3.008,10.944,7.936,13.824c2.496,1.44,5.28,2.176,8.064,2.176c2.688,0,5.408-0.672,7.84-2.048l256-144
-                            c5.024-2.848,8.16-8.16,8.16-13.952S300.864,148.897,295.84,146.049z"/>
-                            <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                        <button id="fast-b__button">
+                            <svg version="1.1" id="fast-b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <g><g>
+                                    <path class="st0" d="M7.8,272.5l234.7,192c6.4,5.2,15.2,6.3,22.7,2.8c7.4-3.5,12.2-11.1,12.2-19.3V301l199.8,163.5
+                                        c6.4,5.2,15.2,6.3,22.7,2.8c7.4-3.5,12.2-11.1,12.2-19.3V64c0-8.2-4.8-15.7-12.2-19.3c-2.9-1.4-6.1-2-9.2-2
+                                        c-4.8,0-9.6,1.6-13.5,4.8L277.3,211V64c0-8.2-4.8-15.7-12.2-19.3c-2.9-1.4-6.1-2-9.2-2c-4.8,0-9.6,1.6-13.5,4.8L7.8,239.5
+                                        C2.9,243.5,0,249.6,0,256C0,262.4,2.9,268.5,7.8,272.5z"/>
+                                </g></g>
+                            </svg>
+                        </button>
+
+                        <svg id="play"version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;" xml:space="preserve">
+                            <path class="st0" d="M295.8,146L39.8,2c-5-2.8-11-2.7-15.9,0.1C19,5.1,16,10.3,16,16v288c0,5.7,3,10.9,7.9,13.8
+                                c2.5,1.4,5.3,2.2,8.1,2.2c2.7,0,5.4-0.7,7.8-2l256-144c5-2.8,8.2-8.2,8.2-14S300.9,148.9,295.8,146z"/>
+                        </svg>
+
+                        <svg version="1.1" id="fast-f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0{fill:#F4F4F4;}
+                        </style>
+                        <g>
+                            <g>
+                                <path class="st0" d="M504.2,239.5l-234.7-192c-6.4-5.2-15.2-6.3-22.7-2.8c-7.4,3.5-12.2,11.1-12.2,19.3v147L34.8,47.5
+                                    c-6.4-5.2-15.2-6.3-22.7-2.8C4.8,48.3,0,55.8,0,64v384c0,8.2,4.8,15.7,12.2,19.3c2.9,1.4,6.1,2,9.2,2c4.8,0,9.6-1.6,13.5-4.8
+                                    L234.7,301v147c0,8.2,4.8,15.7,12.2,19.3c2.9,1.4,6.1,2,9.2,2c4.8,0,9.6-1.6,13.5-4.8l234.7-192c4.9-4.1,7.8-10.1,7.8-16.5
+                                    S509.1,243.5,504.2,239.5z"/>
+                            </g>
+                        </g>
                         </svg>
                     </div>
-                    <audio id="audioPlayer" src="" data-paused="true" controls></audio>
+                    <div id="main__controls__display">
+                        <img src="assets/img/PROFILE-PIC.jpg" alt="artwork" height="63">
+                        <div>
+                            <span class="main__controls__display--title">Song title</span>
+                            <span class="main__controls__display--title">Artist</span>
+                        </div>
+                    </div>
+                    <div id="main__controls__volume">
+                        <img src="assets/img/PROFILE-PIC.jpg" alt="artwork" height="63">
+                    </div>
+                    <!-- <audio id="audioPlayer" src="" data-paused="true" controls class="mb-0"></audio> -->
+                    <audio id="audioPlayer" src="" data-paused="true" class="mb-0"></audio>
                 </div>
               </div>
             <div class="main__search-bar d-flex align-items-center justify-content-between">

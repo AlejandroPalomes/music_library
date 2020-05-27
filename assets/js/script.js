@@ -10,7 +10,7 @@ var month = ["January", "February", "March", "April", "May", "June", "July", "Au
 
 $.ajax({
     url: "https://www.liferay.com/api/jsonws/country/get-countries/",
-    success: (data) => {
+    success: (data)=>{
         $(data).each((i, country) => {
             $("#countrySelect").append(`<option value="${country.a2}" name="test">${country.nameCurrentValue}</option>`)
         })
