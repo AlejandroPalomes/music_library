@@ -8,7 +8,6 @@ var objFav = {
 }
 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-
 $.ajax({
     url: "https://www.liferay.com/api/jsonws/country/get-countries/",
     success: (data) => {
