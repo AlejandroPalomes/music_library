@@ -1,10 +1,7 @@
 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function createArtist(artist){
-// function createArtist(artistJSON){
-    // artist = JSON.parse(artistJSON)
-    // console.log(artist);
-    // console.log("createArtist called")
+
     $("#main__container").append(`
     <div id ="${artist.amgArtistId}" class="main__container__artist d-flex flex-column">
         <a href="${artist.artistLinkUrl}" class="main__container__artist--title mb-4 d-flex flex-column">
@@ -32,21 +29,33 @@ function createArtist(artist){
         },
         complete: ()=> {
             $(".result").hover((e) => {
-                // console.log($(`#h${e.currentTarget.id}`))
                 $(`#h${e.currentTarget.id}`).toggleClass("d-none");
+                $(`#v${e.currentTarget.id}`).toggleClass("d-none");
             });
-            $(".main__target__preview__btn").click(e => {
-                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
-                if($("#audioPlayer").data("paused")==true){
-                    document.querySelector("#audioPlayer").play();
-                    $("#audioPlayer").data("paused", false);
-                }else{
-                    document.querySelector("#audioPlayer").pause();
-                    $("#audioPlayer").data("paused", true);
-                };
+
+            $(".main__target__video").click(function (a){
+                $("#videoModalBtn").click();
+                $("#audioPlayer").get(0).pause();
+                $("#videoPreview").prop("src", $(`#${a.currentTarget.id}`).data("preview"));
+                $("#videoPreview").get(0).play();
                 return false;
             })
+
             heartFill();
+
+            $(".main__target__preview__btn").click(e => {
+                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
+                document.querySelector("#audioPlayer").play();
+                $("#pauseBtn").removeClass("d-none");
+                $("#play").addClass("d-none");
+                $('#display__title').text($(e.currentTarget).data("title"));
+                $('#display__album').text($(e.currentTarget).data("album"));
+                $('#display__artist').text($(e.currentTarget).data("artist"));
+                $('#display__cover').prop("src", $(e.currentTarget).data("cover"));
+                checkOverflow();
+                return false;
+            })
+
             heartClik();
         }
     });
