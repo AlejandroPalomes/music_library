@@ -143,7 +143,7 @@
                 </select>
         
             </div>
-        
+
             <div id="main__container"
                 class=" d-flex flex-row justify-content-md-between justify-content-around my-5 flex-wrap">
             </div>
@@ -163,13 +163,11 @@
             </div>
         </footer>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <button id="videoModalBtn" type="button" class="d-none" data-toggle="modal" data-target="#videoModal"></button>
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
-                <video width="1280" height="720" src="https://video-ssl.itunes.apple.com/itunes-assets/Video113/v4/0d/b4/83/0db483b4-aa40-c7d7-2aaa-3876a780fa5c/mzvf_2706812862443658313.640x478.h264lc.U.p.m4v" controls></video>
+                <video id="videoPreview" width="1280" height="720" class="preview__video" src="https://video-ssl.itunes.apple.com/itunes-assets/Video113/v4/0d/b4/83/0db483b4-aa40-c7d7-2aaa-3876a780fa5c/mzvf_2706812862443658313.640x478.h264lc.U.p.m4v" controls></video>
             </div>
         </div>
       </div>

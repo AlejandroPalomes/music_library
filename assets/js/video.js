@@ -12,8 +12,11 @@ function createVideo(e, month, date){
     return `
         <a href="${e.trackViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
                 <div class="main__target mx-3 mb-5 d-flex flex-column">
-                    <div class="main__target__img">
-                    <img src="${cover}" style="transform: translateY(0px);" alt="art img">
+                    <div class="main__target__vid">
+                        <button id="v${e.trackId}" data-preview="${e.previewUrl}" class="d-none main__target__video"  type="button" data-toggle="modal" data-target="#videoModal">
+                            <img src="assets/img/play.png" alt="play" height="35" width="35">
+                        </button>
+                        <img src="${cover}" alt="art img">
                     </div>
                     <div class=" main__target__info d-flex flex-column justify-content-between">
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
@@ -26,7 +29,7 @@ function createVideo(e, month, date){
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-start align-items-center">
-                            <span class="ml-3">${minutes}:${seconds}</span>
+                            <span>Length: ${minutes}:${seconds}</span>
                         </div>
                     </div>
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

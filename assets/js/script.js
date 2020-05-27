@@ -65,13 +65,13 @@ $("#play__button").click(function (e) {
     if (document.querySelector("#audioPlayer").paused) {
         $("#play").addClass("d-none");
         $("#pauseBtn").removeClass("d-none");
-        document.querySelector("#audioPlayer").play();
+        $("#audioPlayer").get(0).play();
     } else {
         $("#pauseBtn").addClass("d-none");
         $("#play").removeClass("d-none");
-        document.querySelector("#audioPlayer").pause();
+        // document.querySelector("#audioPlayer").pause();
+        $("#audioPlayer").get(0).pause();
     }
-    console.log("working");
 })
 
 // Playing time bar
@@ -81,7 +81,6 @@ audio.addEventListener("timeupdate", function () {
     $('.hp_range').stop(true, true).animate({
         'width': (currentTime + .25) / duration * 100 + '%'
     }, 250, 'linear');
-    console.log(currentTime)
     if (currentTime >= 29.976960) {
         $('.hp_range').animate({
             "width": "0"
@@ -90,6 +89,11 @@ audio.addEventListener("timeupdate", function () {
         $("#play").removeClass("d-none");
     }
 });
+
+//Stop video when closing modal
+$("#videoModal").click(function(e){
+    if(e.target.id != "videoPreview") $("#videoPreview").get(0).pause();
+})
 
 // Load favorites at begginning
 function favLoad() {
@@ -105,7 +109,7 @@ function favLoad() {
             complete: () => {
                 $(`#p${e.trackId}`).click(a => {
                     $("#audioPlayer").prop("src", $(`#p${e.trackId}`).data("preview"))
-                    document.querySelector("#audioPlayer").play();
+                    $("#audioPlayer").get(0).play();
                     $("#pauseBtn").removeClass("d-none");
                     $("#play").addClass("d-none");
                     $('#display__title').text($(`#p${e.trackId}`).data("title"));
@@ -118,7 +122,16 @@ function favLoad() {
 
                 $(`#${e.trackId}`).hover((a) => {
                     $(`#h${a.currentTarget.id}`).toggleClass("d-none");
+                    $(`#v${a.currentTarget.id}`).toggleClass("d-none");
                 });
+
+                $(`#v${e.trackId}`).click(function (a){
+                    $("#videoModalBtn").click();
+                    $("#audioPlayer").get(0).pause();
+                    $("#videoPreview").prop("src", $(`#${a.currentTarget.id}`).data("preview"));
+                    $("#videoPreview").get(0).play();
+                    return false;
+                })
 
                 $(`#h${e.trackId}`).addClass("fillHeart");
                 $(`#h${e.trackId} .st0`).addClass("st0-2");
@@ -142,6 +155,7 @@ function favLoad() {
 
 favLoad();
 
+//Each time there's a change in the inputs, it updates the reuslts
 $("#inputArtist").keyup(updateSearch);
 $("#explicit").change(updateSearch);
 $("#limitSelect").change(updateSearch);
@@ -164,15 +178,14 @@ function updateSearch() {
 
     getResults(iTunesURI, endpoint);
 }
-// )
 
+//Request the results 
 function getResults(iTunesURI, endpoint) {
     $.ajax({
         url: iTunesURI,
         data: endpoint + "&lang=ja_jp",
         dataType: "jsonp",
         success: (result) => {
-            //logResults(result.results)
             $("#main__container").empty();
             printResults(result.results);
         },
@@ -181,7 +194,16 @@ function getResults(iTunesURI, endpoint) {
 
             $(".result").hover((e) => {
                 $(`#h${e.currentTarget.id}`).toggleClass("d-none");
+                $(`#v${e.currentTarget.id}`).toggleClass("d-none");
             });
+
+            $(".main__target__video").click(function (a){
+                $("#videoModalBtn").click();
+                $("#audioPlayer").get(0).pause();
+                $("#videoPreview").prop("src", $(`#${a.currentTarget.id}`).data("preview"));
+                $("#videoPreview").get(0).play();
+                return false;
+            })
 
             heartFill();
 
@@ -203,6 +225,7 @@ function getResults(iTunesURI, endpoint) {
     });
 }
 
+//Print the results
 function printResults(result, type, fav) {
 
     var contentType;
@@ -246,7 +269,6 @@ function printResults(result, type, fav) {
 
         case "musicVideo":
         case "music-video":
-            console.log(result)
             $(result).each((i, e) => {
                 var n = new Date(e.releaseDate);
                 if ($("#explicit").prop("checked") || fav) {
@@ -261,18 +283,16 @@ function printResults(result, type, fav) {
         default:
             $(result).each((i, e) => {
                 var n = new Date(e.releaseDate);
-                $("#main__container").append(createSong(e, month, n));
+                if(e.kind == "song") $("#main__container").append(createSong(e, month, n));
+                if(e.kind == "music-video") $("#main__container").append(createVideo(e, month, n));
+                if(e.wrapperType == "collection") $("#main__container").append(createAlbum(e, month, n));
             })
     }
 }
 
-function logResults(result) {
-    console.log(result)
-}
-
+//When click on the heart
 function heartClik() {
     $(".heart").click(e => {
-        // console.log($(e.currentTarget).parent().parent().prop("id"))
         let trackIdCurrent = $(e.currentTarget).parent().parent().prop("id");
         let currentType = $(e.currentTarget).parent().parent().data("type");
 
@@ -289,12 +309,12 @@ function heartClik() {
     heartFill()
 }
 
+//Fill the heart when it is in favorites
 function heartFill() {
     var storage = getLocalStorage();
     $(".result").each((i, song) => {
         $(storage).each((i, fav) => {
             if (song.id == fav.trackId) {
-                console.log("i'm in fucking fav bitch")
                 $(`#h${song.id}`).addClass("fillHeart");
                 $(`#h${song.id} .st0`).addClass("st0-2");
             }
@@ -302,6 +322,7 @@ function heartFill() {
     })
 }
 
+//Check localStorage
 function checkStorage(song) {
     let trackIdCurrent = $(song).parent().parent().prop("id");
     let currentType = $(song).parent().parent().data("type");
@@ -312,11 +333,13 @@ function checkStorage(song) {
     return false;
 }
 
+//Get localStorage
 function getLocalStorage() {
     tempLocalStorage = JSON.parse(localStorage.getItem("favMusic"))
     return tempLocalStorage;
 }
 
+//Check before save to localStorage
 function saveLocalSorage(obj1) {
     let storage = getLocalStorage()
     if (storage) {
@@ -330,12 +353,14 @@ function saveLocalSorage(obj1) {
     }
 }
 
+//add to localStorage
 function uploadStorage(storage, obj1) {
     storage.push(obj1);
     localStorage.setItem("favMusic", JSON.stringify(storage));
     // return false;
 }
 
+//Remove from localStorage
 function removeSong(storage, element) {
     let index;
     $(storage).each((i, song) => {
@@ -351,6 +376,7 @@ function removeSong(storage, element) {
     localStorage.setItem("favMusic", JSON.stringify(storage))
 }
 
+//Check if the artist+album overflows in the media player
 function checkOverflow(){
     if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
         //Text has over-flown
@@ -364,268 +390,3 @@ function checkOverflow(){
         $('#artistInfo').css("position", "relative");
     }
 }
-
-// "use strict";
-
-// var iTunesURI = "https://itunes.apple.com/search?";
-// var endpoint = "term=babymetal&limit=50&country=jp";
-// var countryValue;
-// var tempLocalStorage;
-// var objFav = {
-//   trackId: 0,
-//   type: ""
-// };
-// var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-// $.ajax({
-//   url: "https://www.liferay.com/api/jsonws/country/get-countries/",
-//   success: function success(data) {
-//     $(data).each(function (i, country) {
-//       $("#countrySelect").append("<option value=\"" + country.a2 + "\" name=\"test\">" + country.nameCurrentValue + "</option>");
-//     });
-//   }
-// });
-
-// function favLoad() {
-//   var fav = getLocalStorage();
-//   $("#main__container").empty();
-//   $(fav).each(function (i, e) {
-//     $.ajax({
-//       url: "https://itunes.apple.com/lookup?id=" + e.trackId,
-//       dataType: "jsonp",
-//       success: function success(track) {
-//         printResults(track.results[0], e.type, true);
-//       },
-//       complete: function complete() {
-//         $("#p" + e.trackId).click(function (a) {
-//           $("#audioPlayer").prop("src", $("#p" + e.trackId).data("preview"));
-
-//           if ($("#audioPlayer").data("paused") == true) {
-//             document.querySelector("#audioPlayer").play();
-//             $("#audioPlayer").data("paused", false);
-//           } else {
-//             document.querySelector("#audioPlayer").pause();
-//             $("#audioPlayer").data("paused", true);
-//           }
-
-//           ;
-//           return false;
-//         });
-//         $("#" + e.trackId).hover(function (a) {
-//           $("#h" + a.currentTarget.id).toggleClass("d-none");
-//         });
-//         $("#h" + e.trackId).addClass("fillHeart");
-//         $("#h" + e.trackId + " .st0").addClass("st0-2");
-//         $("#h" + e.trackId).click(function (a) {
-//           $(a.currentTarget).toggleClass("fillHeart");
-//           $("#" + a.currentTarget.id + " .st0").toggleClass("st0-2");
-//           objFav.trackId = e.trackId;
-//           objFav.type = e.type;
-//           getLocalStorage();
-//           saveLocalSorage(objFav); // favLoad();
-
-//           return false;
-//         });
-//       }
-//     });
-//   });
-// }
-
-// favLoad();
-// $("#inputArtist").keyup(updateSearch);
-// $("#explicit").change(updateSearch);
-// $("#limitSelect").change(updateSearch);
-// $("#countrySelect").change(updateSearch);
-// $("#fieldSelect").change(updateSearch);
-
-// function updateSearch() {
-//   endpoint = "term=" + $("#inputArtist").prop("value");
-
-//   if ($("#fieldSelect").val() != null) {
-//     endpoint += "&entity=" + $("#fieldSelect option:selected").val();
-//   }
-
-//   if ($("#countrySelect option:selected").val() != null) {
-//     endpoint += "&country=" + $("#countrySelect option:selected").val();
-//   }
-
-//   if ($("#limitSelect option:selected").val() != null) {
-//     endpoint += "&limit=" + $("#limitSelect option:selected").val();
-//   }
-
-//   getResults(iTunesURI, endpoint);
-// } // )
-
-
-// function getResults(iTunesURI, endpoint) {
-//   $.ajax({
-//     url: iTunesURI,
-//     data: endpoint + "&lang=ja_jp",
-//     dataType: "jsonp",
-//     success: function success(result) {
-//       //logResults(result.results)
-//       $("#main__container").empty();
-//       printResults(result.results);
-//     },
-//     error: function error() {
-//       return console.log("fuck");
-//     },
-//     complete: function complete() {
-//       $(".result").hover(function (e) {
-//         $("#h" + e.currentTarget.id).toggleClass("d-none");
-//       });
-//       heartFill();
-//       $(".main__target__preview__btn").click(function (e) {
-//         $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
-
-//         if ($("#audioPlayer").data("paused") == true) {
-//           document.querySelector("#audioPlayer").play();
-//           $("#audioPlayer").data("paused", false);
-//         } else {
-//           document.querySelector("#audioPlayer").pause();
-//           $("#audioPlayer").data("paused", true);
-//         }
-
-//         ;
-//         return false;
-//       });
-//       heartClik();
-//     }
-//   });
-// }
-
-// function printResults(result, type, fav) {
-//   var contentType;
-//   type ? contentType = type : contentType = $("#fieldSelect").val();
-
-//   switch (contentType) {
-//     case "song":
-//       $(result).each(function (i, e) {
-//         var n = new Date(e.releaseDate);
-
-//         if ($("#explicit").prop("checked") || fav) {
-//           $("#main__container").append(createSong(e, month, n));
-//         } else {
-//           if (e.collectionExplicitness == "notExplicit") {
-//             $("#main__container").append(createSong(e, month, n));
-//           }
-//         }
-//       });
-//       break;
-
-//     case "album":
-//     case "Album":
-//       $(result).each(function (i, e) {
-//         var n = new Date(e.releaseDate);
-
-//         if ($("#explicit").prop("checked") || fav) {
-//           $("#main__container").append(createAlbum(e, month, n));
-//         } else {
-//           if (e.contentAdvisoryRating != "Explicit" || e.collectionExplicitness == "notExplicit") {
-//             $("#main__container").append(createAlbum(e, month, n));
-//           }
-//         }
-//       });
-//       break;
-
-//     case "allArtist":
-//       $(result).each(function (i, e) {
-//         if (e.wrapperType == "artist") {
-//           createArtist(e);
-//         }
-//       });
-//       break;
-
-//     default:
-//       $(result).each(function (i, e) {
-//         // if ($("#explicit").prop("checked")) {
-//         var n = new Date(e.releaseDate);
-//         $("#main__container").append(createSong(e, month, n)); // $("#main__container").append(createSong(e, month, n));
-//         // }
-//       });
-//   }
-// }
-
-// function logResults(result) {
-//   console.log(result);
-// }
-
-// function heartClik() {
-//   $(".heart").click(function (e) {
-//     // console.log($(e.currentTarget).parent().parent().prop("id"))
-//     var trackIdCurrent = $(e.currentTarget).parent().parent().prop("id");
-//     var currentType = $(e.currentTarget).parent().parent().data("type");
-//     objFav.trackId = trackIdCurrent;
-//     objFav.type = currentType;
-//     $(e.currentTarget).toggleClass("fillHeart");
-//     $("#" + e.currentTarget.id + " .st0").toggleClass("st0-2");
-//     getLocalStorage();
-//     saveLocalSorage(objFav);
-//     return false;
-//   });
-//   heartFill();
-// }
-
-// function heartFill() {
-//   var storage = getLocalStorage();
-//   $(".result").each(function (i, song) {
-//     $(storage).each(function (i, fav) {
-//       if (song.id == fav.trackId) {
-//         console.log("i'm in fucking fav bitch");
-//         $("#h" + song.id).addClass("fillHeart");
-//         $("#h" + song.id + " .st0").addClass("st0-2");
-//       }
-//     });
-//   });
-// }
-
-// function checkStorage(song) {
-//   var trackIdCurrent = $(song).parent().parent().prop("id");
-//   var currentType = $(song).parent().parent().data("type");
-//   objFav.trackId = trackIdCurrent;
-//   objFav.type = currentType;
-//   getLocalStorage();
-//   saveLocalSorage(objFav);
-//   return false;
-// }
-
-// function getLocalStorage() {
-//   tempLocalStorage = JSON.parse(localStorage.getItem("favMusic"));
-//   return tempLocalStorage;
-// }
-
-// function saveLocalSorage(obj1) {
-//   var storage = getLocalStorage();
-
-//   if (storage) {
-//     var include = storage.filter(function (fav) {
-//       return fav.trackId == obj1.trackId;
-//     });
-//     include.length ? removeSong(storage, obj1) : uploadStorage(storage, obj1);
-//   } else {
-//     var arr = [];
-//     arr.push(obj1);
-//     localStorage.setItem("favMusic", JSON.stringify(arr));
-//     return;
-//   }
-// }
-
-// function uploadStorage(storage, obj1) {
-//   storage.push(obj1);
-//   localStorage.setItem("favMusic", JSON.stringify(storage)); // return false;
-// }
-
-// function removeSong(storage, element) {
-//   var index;
-//   $(storage).each(function (i, song) {
-//     if (song.trackId == element.trackId) {
-//       index = i;
-//     }
-//   });
-
-//   if (index > -1) {
-//     storage.splice(index, 1);
-//   }
-
-//   ;
-//   localStorage.setItem("favMusic", JSON.stringify(storage));
-// }
