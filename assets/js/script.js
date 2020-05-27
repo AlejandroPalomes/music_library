@@ -34,9 +34,7 @@ function favLoad() {
                     if($("#audioPlayer").data("paused")==true){
                         document.querySelector("#audioPlayer").play();
                         $("#audioPlayer").data("paused", false);
-                        console.log("in play");
                     }else{
-                        console.log("in pause")
                         document.querySelector("#audioPlayer").pause();
                         $("#audioPlayer").data("paused", true);
                     };
@@ -118,16 +116,15 @@ function getResults(iTunesURI, endpoint) {
             heartFill();
 
             $(".main__target__preview__btn").click(e => {
-                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"))
-                    if($("#audioPlayer").data("paused")==true){
-                        document.querySelector("#audioPlayer").play();
-                        $("#audioPlayer").data("paused", false);
-                        console.log("in play");
-                    }else{
-                        console.log("in pause")
-                        document.querySelector("#audioPlayer").pause();
-                        $("#audioPlayer").data("paused", true);
-                    };
+                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"));
+                if($("#audioPlayer").data("paused")==true){
+                    document.querySelector("#audioPlayer").play();
+                    $("#audioPlayer").data("paused", false);
+                }else{
+                    document.querySelector("#audioPlayer").pause();
+                    $("#audioPlayer").data("paused", true);
+                };
+                $('#toggleControls').click();
                 return false;
             })
 
