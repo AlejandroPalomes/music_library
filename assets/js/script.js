@@ -18,10 +18,9 @@ $.ajax({
     },
 })
 
-
 function favLoad() {
     var fav = getLocalStorage();
-
+    $("#main__container").empty();
     $(fav).each((i, e) => {
         $.ajax({
             url: "https://itunes.apple.com/lookup?id=" + e.trackId,
@@ -29,9 +28,23 @@ function favLoad() {
             success: (track) => {
                 printResults(track.results[0], e.type, true);
             },
-            complete: (o, track) => {
+            complete: () => {
                 $(`#p${e.trackId}`).click(a => {
-                    console.log("working");
+                    $("#audioPlayer").prop("src", $(`#p${e.trackId}`).data("preview"))
+                    if($("#audioPlayer").data("paused")==true){
+                        document.querySelector("#audioPlayer").play();
+                        $("#audioPlayer").data("paused", false);
+                        console.log("in play");
+                    }else{
+                        console.log("in pause")
+                        document.querySelector("#audioPlayer").pause();
+                        $("#audioPlayer").data("paused", true);
+                    };
+                    // $('#collapseControls').toggleClass("collapse");
+                    // var player = document.querySelector("#audioPlayer");
+                    // $(player).prop("src", $(`#p${e.trackId}`).data("preview"))
+                    // player.paused ? player.play() : player.pause();
+                    // document.querySelector("#audioPlayer").play()
                     return false;
                 })
 
@@ -50,6 +63,7 @@ function favLoad() {
                     objFav.type = e.type;
                     getLocalStorage();
                     saveLocalSorage(objFav);
+                    // favLoad();
 
                     return false;
                 })
@@ -60,9 +74,6 @@ function favLoad() {
 
 favLoad();
 
-
-
-// $("#searchBtn").click((e)=>{
 $("#inputArtist").keyup(updateSearch);
 $("#explicit").change(updateSearch);
 $("#limitSelect").change(updateSearch);
@@ -107,8 +118,16 @@ function getResults(iTunesURI, endpoint) {
             heartFill();
 
             $(".main__target__preview__btn").click(e => {
-                console.log("working");
-
+                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"))
+                    if($("#audioPlayer").data("paused")==true){
+                        document.querySelector("#audioPlayer").play();
+                        $("#audioPlayer").data("paused", false);
+                        console.log("in play");
+                    }else{
+                        console.log("in pause")
+                        document.querySelector("#audioPlayer").pause();
+                        $("#audioPlayer").data("paused", true);
+                    };
                 return false;
             })
 

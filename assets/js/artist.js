@@ -35,6 +35,12 @@ function createArtist(artist){
                 // console.log($(`#h${e.currentTarget.id}`))
                 $(`#h${e.currentTarget.id}`).toggleClass("d-none");
             });
+            $(".main__target__preview__btn").click(e => {
+                console.log("working");
+                $("#audioPlayer").prop("src", $(e.currentTarget).data("preview"))
+                document.querySelector("#audioPlayer").play()
+                return false;
+            })
             heartFill();
             heartClik();
         }

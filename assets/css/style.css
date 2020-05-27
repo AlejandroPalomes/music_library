@@ -41,8 +41,13 @@ header > div{
     width: 85%;
 }
  /*? HEADER END */
+
  .general{
     min-height: 100vh;
+}
+
+button:focus{
+    outline: none;
 }
 
 .main{

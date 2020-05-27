@@ -25,7 +25,7 @@ function createSong(e, month, date){
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-start align-items-center">
-                            <button id="p${e.trackId}" class="main__target__preview__btn"></button>
+                            <button id="p${e.trackId}" class="main__target__preview__btn" data-preview="${e.previewUrl}"></button>
                             <span class="ml-3">${minutes}:${seconds}</span>
                         </div>
                     </div>
