@@ -167,6 +167,11 @@ button:focus{
     width: 100%;
     white-space: nowrap;
     position: relative;
+    height: 21px;
+}
+
+#artistInfo{
+    /* position: absolute; */
 }
 
 #main__controls__volume{

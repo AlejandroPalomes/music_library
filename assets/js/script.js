@@ -10,7 +10,7 @@ var month = ["January", "February", "March", "April", "May", "June", "July", "Au
 
 $.ajax({
     url: "https://www.liferay.com/api/jsonws/country/get-countries/",
-    success: (data)=>{
+    success: (data) => {
         $(data).each((i, country) => {
             $("#countrySelect").append(`<option value="${country.a2}" name="test">${country.nameCurrentValue}</option>`)
         })
@@ -24,48 +24,48 @@ var e = document.querySelector('.volume-slider-con');
 var eInner = document.querySelector('.volume-slider');
 var audio = document.querySelector('audio');
 var drag = false;
-e.addEventListener('mousedown',function(ev){
-   drag = true;
-   updateBar(ev.clientX);
+e.addEventListener('mousedown', function (ev) {
+    drag = true;
+    updateBar(ev.clientX);
 });
-document.addEventListener('mousemove',function(ev){
-   if(drag){
-      updateBar(ev.clientX);
-   }
+document.addEventListener('mousemove', function (ev) {
+    if (drag) {
+        updateBar(ev.clientX);
+    }
 });
-document.addEventListener('mouseup',function(ev){
- drag = false;
+document.addEventListener('mouseup', function (ev) {
+    drag = false;
 });
 var updateBar = function (x, vol) {
-   var volume = e;
-        var percentage;
-        //if only volume have specificed
-        //then direct update volume
-        if (vol) {
-            percentage = vol * 100;
-        } else {
-            var position = x - volume.offsetLeft;
-            percentage = 100 * position / volume.clientWidth;
-        }
+    var volume = e;
+    var percentage;
+    //if only volume have specificed
+    //then direct update volume
+    if (vol) {
+        percentage = vol * 100;
+    } else {
+        var position = x - volume.offsetLeft;
+        percentage = 100 * position / volume.clientWidth;
+    }
 
-        if (percentage > 100) {
-            percentage = 100;
-        }
-        if (percentage < 0) {
-            percentage = 0;
-        }
+    if (percentage > 100) {
+        percentage = 100;
+    }
+    if (percentage < 0) {
+        percentage = 0;
+    }
 
-        //update volume bar and video volume
-        eInner.style.width = percentage +'%';
-        audio.volume = percentage / 100;
+    //update volume bar and video volume
+    eInner.style.width = percentage + '%';
+    audio.volume = percentage / 100;
 };
 
-$("#play__button").click(function(e){
-    if(document.querySelector("#audioPlayer").paused){
+$("#play__button").click(function (e) {
+    if (document.querySelector("#audioPlayer").paused) {
         $("#play").addClass("d-none");
         $("#pauseBtn").removeClass("d-none");
         document.querySelector("#audioPlayer").play();
-    } else{
+    } else {
         $("#pauseBtn").addClass("d-none");
         $("#play").removeClass("d-none");
         document.querySelector("#audioPlayer").pause();
@@ -74,14 +74,18 @@ $("#play__button").click(function(e){
 })
 
 // var player = document.getElementById('player');
-audio.addEventListener("timeupdate", function() {
+audio.addEventListener("timeupdate", function () {
     var currentTime = audio.currentTime;
     var duration = audio.duration;
-    $('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+    $('.hp_range').stop(true, true).animate({
+        'width': (currentTime + .25) / duration * 100 + '%'
+    }, 250, 'linear');
     console.log(currentTime)
-    if(currentTime >= 29.976960){
+    if (currentTime >= 29.976960) {
         console.log("it worked bitch")
-        $('.hp_range').animate({"width": "0"}, 1, 'linear');
+        $('.hp_range').animate({
+            "width": "0"
+        }, 1, 'linear');
         $("#pauseBtn").addClass("d-none");
         $("#play").removeClass("d-none");
     }
@@ -111,16 +115,17 @@ function favLoad() {
                     $('#display__album').text($(`#p${e.trackId}`).data("album"));
                     $('#display__artist').text($(`#p${e.trackId}`).data("artist"));
                     $('#display__cover').prop("src", $(`#p${e.trackId}`).data("cover"));
-                    if ($('.main__controls__display--artist')[0].scrollWidth >  $('.main__controls__display--artist').innerWidth()) {
+                    if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
                         //Text has over-flown
-                        $('#artistInfo').animate({
-                            'left':0
-                        },
-                        {},
-                        3000,'linear');
-
+                        $('#artistInfo').css("position", "absolute");
+                        var displace = ($('.main__controls__display--artist')[0].scrollWidth - $('.main__controls__display--artist').innerWidth())
+                        $('#artistInfo').css("left", "10px");
+                        $('#artistInfo').finish();
+                        $('#artistInfo').animate({left: "-" + (displace + 10) + "px"}, 8000, "swing").animate({left: "10px"}, 8000, "swing");
+                    }else{
+                        $('#artistInfo').finish();
+                        $('#artistInfo').css("position", "relative");
                     }
-
                     return false;
                 })
 
@@ -245,12 +250,25 @@ function printResults(result, type, fav) {
 
         case "allArtist":
             $(result).each((i, e) => {
-                if(e.wrapperType == "artist"){
+                if (e.wrapperType == "artist") {
                     createArtist(e);
                 }
             })
             break;
-
+        case "musicVideo":
+        case "music-video":
+            console.log("estoy en video")
+            $(result).each((i, e) => {
+                var n = new Date(e.releaseDate);
+                if ($("#explicit").prop("checked") || fav) {
+                    $("#main__container").append(createVideo(e, month, n));
+                } else {
+                    if (e.collectionExplicitness == "notExplicit") {
+                        $("#main__container").append(createVideo(e, month, n));
+                    }
+                }
+            })
+            break;
         default:
             $(result).each((i, e) => {
                 // if ($("#explicit").prop("checked")) {
@@ -266,7 +284,7 @@ function logResults(result) {
     console.log(result)
 }
 
-function heartClik(){
+function heartClik() {
     $(".heart").click(e => {
         // console.log($(e.currentTarget).parent().parent().prop("id"))
         let trackIdCurrent = $(e.currentTarget).parent().parent().prop("id");
@@ -285,11 +303,11 @@ function heartClik(){
     heartFill()
 }
 
-function heartFill(){
+function heartFill() {
     var storage = getLocalStorage();
-    $(".result").each((i, song)=>{
-        $(storage).each((i, fav)=>{
-            if(song.id == fav.trackId){
+    $(".result").each((i, song) => {
+        $(storage).each((i, fav) => {
+            if (song.id == fav.trackId) {
                 console.log("i'm in fucking fav bitch")
                 $(`#h${song.id}`).addClass("fillHeart");
                 $(`#h${song.id} .st0`).addClass("st0-2");
@@ -298,7 +316,7 @@ function heartFill(){
     })
 }
 
-function  checkStorage(song){
+function checkStorage(song) {
     let trackIdCurrent = $(song).parent().parent().prop("id");
     let currentType = $(song).parent().parent().data("type");
     objFav.trackId = trackIdCurrent;
@@ -315,7 +333,7 @@ function getLocalStorage() {
 
 function saveLocalSorage(obj1) {
     let storage = getLocalStorage()
-    if (storage){
+    if (storage) {
         var include = storage.filter(fav => fav.trackId == obj1.trackId)
         include.length ? removeSong(storage, obj1) : uploadStorage(storage, obj1);
     } else {
@@ -326,7 +344,7 @@ function saveLocalSorage(obj1) {
     }
 }
 
-function uploadStorage(storage, obj1){
+function uploadStorage(storage, obj1) {
     storage.push(obj1);
     localStorage.setItem("favMusic", JSON.stringify(storage));
     // return false;
