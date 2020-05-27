@@ -63,6 +63,22 @@ button:focus{
     top: 50px;
     z-index: 1;
     transform: translateY(-50px);
+    height: 75px;
+}
+
+#collapseControls{
+    border: 1px solid red;
+    width: 100%;
+}
+
+#play{
+    fill: red;
+    height: 200px;
+    width: 200px;
+}
+
+.main__controls__conrols{
+    
 }
 
 .main__search-bar{

@@ -39,10 +39,7 @@ function favLoad() {
                         $("#audioPlayer").data("paused", true);
                     };
                     $('#toggleControls').click();
-                    // var player = document.querySelector("#audioPlayer");
-                    // $(player).prop("src", $(`#p${e.trackId}`).data("preview"))
-                    // player.paused ? player.play() : player.pause();
-                    // document.querySelector("#audioPlayer").play()
+
                     return false;
                 })
 
@@ -134,7 +131,6 @@ function getResults(iTunesURI, endpoint) {
 }
 
 function printResults(result, type, fav) {
-    // $("#main__container").empty();
 
     var contentType;
     type ? contentType = type : contentType = $("#fieldSelect").val();
@@ -145,7 +141,6 @@ function printResults(result, type, fav) {
                 var n = new Date(e.releaseDate);
                 if ($("#explicit").prop("checked") || fav) {
                     $("#main__container").append(createSong(e, month, n));
-                    // $("#main__container").append(createSong(e, month, n));
                 } else {
                     if (e.collectionExplicitness == "notExplicit") {
                         $("#main__container").append(createSong(e, month, n));
@@ -260,9 +255,7 @@ function uploadStorage(storage, obj1){
 function removeSong(storage, element) {
     let index;
     $(storage).each((i, song) => {
-        // console.log(i)
         if (song.trackId == element.trackId) {
-            // console.log(i + " index of same id")
             index = i;
         }
     });

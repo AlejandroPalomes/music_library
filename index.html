@@ -22,11 +22,28 @@
         <div class="main d-flex flex-column align-items-center justify-content-between">
             <button class="btn btn-primary d-none" id="toggleControls" type="button" data-toggle="collapse" data-target="#collapseControls" aria-expanded="false" aria-controls="collapseControls">
               </button>
+
             <div class="collapse main__controls__container" id="collapseControls">
-                <!-- <div class="card card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div> -->
-                <audio id="audioPlayer" src="" data-paused="true" controls></audio>
+                <div class="d-flex justify-content-around">
+                    <div class="main__controls__conrols">
+                        <!-- <svg version="1.1" id="pause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve"><g><g>
+                            <path d="M181.333,0H74.667c-17.643,0-32,14.357-32,32v448c0,17.643,14.357,32,32,32h106.667c17.643,0,32-14.357,32-32V32
+                                C213.333,14.357,198.976,0,181.333,0z"/></g></g><g><g>
+                            <path d="M437.333,0H330.667c-17.643,0-32,14.357-32,32v448c0,17.643,14.357,32,32,32h106.667c17.643,0,32-14.357,32-32V32
+                                C469.333,14.357,454.976,0,437.333,0z"/>
+                            </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                        </svg> -->
+                        <svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 2000 2000" style="enable-background:new 0 0 2000 2000;" xml:space="preserve">
+                            <path d="M295.84,146.049l-256-144c-4.96-2.784-11.008-2.72-15.904,0.128C19.008,5.057,16,10.305,16,16.001v288
+                            c0,5.696,3.008,10.944,7.936,13.824c2.496,1.44,5.28,2.176,8.064,2.176c2.688,0,5.408-0.672,7.84-2.048l256-144
+                            c5.024-2.848,8.16-8.16,8.16-13.952S300.864,148.897,295.84,146.049z"/>
+                            <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                        </svg>
+                    </div>
+                    <audio id="audioPlayer" src="" data-paused="true" controls></audio>
+                </div>
               </div>
             <div class="main__search-bar d-flex align-items-center justify-content-between">
                 <select name="" id="fieldSelect">
