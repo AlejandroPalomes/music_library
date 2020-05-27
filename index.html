@@ -20,10 +20,12 @@
             </div>
         </header>
         <div class="main d-flex flex-column align-items-center justify-content-between">
-            <div class="collapse" id="collapseControls">
-                <div class="card card-body">
+            <button class="btn btn-primary d-none" id="toggleControls" type="button" data-toggle="collapse" data-target="#collapseControls" aria-expanded="false" aria-controls="collapseControls">
+              </button>
+            <div class="collapse main__controls__container" id="collapseControls">
+                <!-- <div class="card card-body">
                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
+                </div> -->
                 <audio id="audioPlayer" src="" data-paused="true" controls></audio>
               </div>
             <div class="main__search-bar d-flex align-items-center justify-content-between">

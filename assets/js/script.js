@@ -40,7 +40,7 @@ function favLoad() {
                         document.querySelector("#audioPlayer").pause();
                         $("#audioPlayer").data("paused", true);
                     };
-                    // $('#collapseControls').toggleClass("collapse");
+                    $('#toggleControls').click();
                     // var player = document.querySelector("#audioPlayer");
                     // $(player).prop("src", $(`#p${e.trackId}`).data("preview"))
                     // player.paused ? player.play() : player.pause();

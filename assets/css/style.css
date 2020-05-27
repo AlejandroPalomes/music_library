@@ -58,6 +58,13 @@ button:focus{
     width: 85%;
 }
 
+.main__controls__container{
+    position: sticky;
+    top: 50px;
+    z-index: 1;
+    transform: translateY(-50px);
+}
+
 .main__search-bar{
     box-sizing: border-box;
     border: 2px solid rgb(40, 42, 58);
