@@ -17,9 +17,7 @@ $.ajax({
     },
 })
 
-
 //volume control START
-
 var e = document.querySelector('.volume-slider-con');
 var eInner = document.querySelector('.volume-slider');
 var audio = document.querySelector('audio');
@@ -59,7 +57,10 @@ var updateBar = function (x, vol) {
     eInner.style.width = percentage + '%';
     audio.volume = percentage / 100;
 };
+//Volume control END
 
+
+// Play/Pause button
 $("#play__button").click(function (e) {
     if (document.querySelector("#audioPlayer").paused) {
         $("#play").addClass("d-none");
@@ -73,7 +74,7 @@ $("#play__button").click(function (e) {
     console.log("working");
 })
 
-// var player = document.getElementById('player');
+// Playing time bar
 audio.addEventListener("timeupdate", function () {
     var currentTime = audio.currentTime;
     var duration = audio.duration;
@@ -82,7 +83,6 @@ audio.addEventListener("timeupdate", function () {
     }, 250, 'linear');
     console.log(currentTime)
     if (currentTime >= 29.976960) {
-        console.log("it worked bitch")
         $('.hp_range').animate({
             "width": "0"
         }, 1, 'linear');
@@ -91,8 +91,7 @@ audio.addEventListener("timeupdate", function () {
     }
 });
 
-// volume control END
-
+// Load favorites at begginning
 function favLoad() {
     var fav = getLocalStorage();
     $("#main__container").empty();
@@ -101,9 +100,7 @@ function favLoad() {
             url: "https://itunes.apple.com/lookup?id=" + e.trackId,
             dataType: "jsonp",
             success: (track) => {
-
                 printResults(track.results[0], e.type, true);
-
             },
             complete: () => {
                 $(`#p${e.trackId}`).click(a => {
@@ -115,17 +112,7 @@ function favLoad() {
                     $('#display__album').text($(`#p${e.trackId}`).data("album"));
                     $('#display__artist').text($(`#p${e.trackId}`).data("artist"));
                     $('#display__cover').prop("src", $(`#p${e.trackId}`).data("cover"));
-                    if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
-                        //Text has over-flown
-                        $('#artistInfo').css("position", "absolute");
-                        var displace = ($('.main__controls__display--artist')[0].scrollWidth - $('.main__controls__display--artist').innerWidth())
-                        $('#artistInfo').css("left", "10px");
-                        $('#artistInfo').finish();
-                        $('#artistInfo').animate({left: "-" + (displace + 10) + "px"}, 8000, "swing").animate({left: "10px"}, 8000, "swing");
-                    }else{
-                        $('#artistInfo').finish();
-                        $('#artistInfo').css("position", "relative");
-                    }
+                    checkOverflow();
                     return false;
                 })
 
@@ -207,6 +194,7 @@ function getResults(iTunesURI, endpoint) {
                 $('#display__album').text($(e.currentTarget).data("album"));
                 $('#display__artist').text($(e.currentTarget).data("artist"));
                 $('#display__cover').prop("src", $(e.currentTarget).data("cover"));
+                checkOverflow();
                 return false;
             })
 
@@ -255,9 +243,10 @@ function printResults(result, type, fav) {
                 }
             })
             break;
+
         case "musicVideo":
         case "music-video":
-            console.log("estoy en video")
+            console.log(result)
             $(result).each((i, e) => {
                 var n = new Date(e.releaseDate);
                 if ($("#explicit").prop("checked") || fav) {
@@ -271,11 +260,8 @@ function printResults(result, type, fav) {
             break;
         default:
             $(result).each((i, e) => {
-                // if ($("#explicit").prop("checked")) {
                 var n = new Date(e.releaseDate);
                 $("#main__container").append(createSong(e, month, n));
-                // $("#main__container").append(createSong(e, month, n));
-                // }
             })
     }
 }
@@ -363,6 +349,20 @@ function removeSong(storage, element) {
     };
 
     localStorage.setItem("favMusic", JSON.stringify(storage))
+}
+
+function checkOverflow(){
+    if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
+        //Text has over-flown
+        $('#artistInfo').css("position", "absolute");
+        var displace = ($('.main__controls__display--artist')[0].scrollWidth - $('.main__controls__display--artist').innerWidth())
+        $('#artistInfo').css("left", "10px");
+        $('#artistInfo').finish();
+        $('#artistInfo').animate({left: "-" + (displace + 10) + "px"}, 8000, "swing").animate({left: "10px"}, 8000, "swing");
+    }else{
+        $('#artistInfo').finish();
+        $('#artistInfo').css("position", "relative");
+    }
 }
 
 // "use strict";

@@ -10,7 +10,7 @@ function createVideo(e, month, date){
     seconds.toString().length == 1 ? seconds = "0" + seconds : seconds;
 
     return `
-        <a href="${e.collectionViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
+        <a href="${e.trackViewUrl}" class="result" id="${e.trackId}" data-type="${e.kind}">
                 <div class="main__target mx-3 mb-5 d-flex flex-column">
                     <div class="main__target__img">
                     <img src="${cover}" style="transform: translateY(0px);" alt="art img">
@@ -19,7 +19,6 @@ function createVideo(e, month, date){
                         <div class="mt-2 px-3 d-flex flex-column justify-content-between">
                             <h4 class="main__target__title">${truncate(e.trackName, 35, true)}</h4>
                             <h5 class="main__target__artist">${e.artistName}</h5>
-                            <h6 class="main__target__album">${truncate(e.collectionName, 30, true)}</h6>
                         </div>
                         <div class="px-3 d-flex justify-content-between smallText">
                             <span>${month[date.getMonth()]} ${date.getFullYear()}</span>
@@ -27,7 +26,6 @@ function createVideo(e, month, date){
                         </div>
                         <span class="px-3">${e.primaryGenreName}</span>
                         <div class="px-3 mb-2 d-flex justify-content-start align-items-center">
-                            
                             <span class="ml-3">${minutes}:${seconds}</span>
                         </div>
                     </div>
