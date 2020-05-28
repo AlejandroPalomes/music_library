@@ -6,7 +6,7 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 if(isIE){
     $(".general").css("height", "100px");
-    $(".main__controls__container").css("transform", "translateY(1px)")
+    //$(".main__controls__container").css("transform", "translateY(1px)")
 }
 var iTunesURI = "https://itunes.apple.com/search?";
 var endpoint = "term=babymetal&limit=50&country=jp";
@@ -25,8 +25,9 @@ $.ajax({
             $("#countrySelect").append("<option value=\"" + country.a2 + "\" name=\"test\">" + country.nameCurrentValue + "</option>");
         });
     }
-}); //volume control START
+});
 
+//volume control START
 var e = document.querySelector('.volume-slider-con');
 var eInner = document.querySelector('.volume-slider');
 var audio = document.querySelector('audio');
@@ -46,9 +47,10 @@ document.addEventListener('mouseup', function (ev) {
 
 var updateBar = function updateBar(x, vol) {
     var volume = e;
-    var percentage; //if only volume have specificed
+    var percentage;
+    
+    //if only volume have specificed
     //then direct update volume
-
     if (vol) {
         percentage = vol * 100;
     } else {
@@ -62,9 +64,9 @@ var updateBar = function updateBar(x, vol) {
 
     if (percentage < 0) {
         percentage = 0;
-    } //update volume bar and video volume
-
-
+    }
+    
+    //update volume bar and video volume
     eInner.style.width = percentage + '%';
     audio.volume = percentage / 100;
 }; //Volume control END
