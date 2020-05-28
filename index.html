@@ -143,30 +143,34 @@
                 </div>
             </div>
             <!-- <div class="main__search-bar d-flex flex-column flex-sm-row flex-wrap align-items-center justify-content-between"> -->
-            <div class="main__search-bar d-flex flex-wrap align-items-center justify-content-between">
-                <select name="" id="fieldSelect">
-                    <option value="" selected disabled>Category</option>
-                    <option value="song">Songs</option>
-                    <option value="allArtist">Artists</option>
-                    <option value="album">Album</option>
-                    <option value="musicVideo">Video</option>
-                </select>
+            <div class="main__search-bar d-flex flex-column flex-md-row align-items-center justify-content-sm-between justify-content-around">
+                <div class="d-flex justify-content-around main__search__section my-1 my-md-0">
+                    <select name="" id="fieldSelect">
+                        <option value="" selected disabled>Category</option>
+                        <option value="song">Songs</option>
+                        <option value="allArtist">Artists</option>
+                        <option value="album">Album</option>
+                        <option value="musicVideo">Video</option>
+                    </select>
+    
+                    <input type="text" id="inputArtist" value="" placeholder="Serach">
+                </div>
 
-                <input type="text" id="inputArtist" value="" placeholder="Serach">
-
-                <select name="test" id="countrySelect">
-                    <option value="" selected disabled>Country</option>
-                </select>
-
-                <label class="mb-0" for="">Explicit
-                    <input type="checkbox" name="" id="explicit">
-                </label>
-                <select name="" id="limitSelect">
-                    <option selected disabled value="">Limit results</option>
-                    <option value="10">10</option>
-                    <option value="100">100</option>
-                    <option value="200">200</option>
-                </select>
+                <div class="d-flex justify-content-around main__search__section  my-1 my-md-0">
+                    <select name="test" id="countrySelect" class="">
+                        <option value="" selected disabled>Country</option>
+                    </select>
+    
+                    <label class="mb-0 " for="">Explicit
+                        <input type="checkbox" name="" id="explicit">
+                    </label>
+                    <select name="" id="limitSelect" class="">
+                        <option selected disabled value="">Limit results</option>
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
 
             </div>
 
@@ -177,7 +181,8 @@
         <footer class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img id="footer__profile-pic" src="assets/img/musical-note.svg" height="25" width="25" alt="profile pic">
-                <span>Made by <strong>Guillermo V.</strong> & <strong>Àlex P.</strong></span>
+                <span class="d-inline-block d-sm-none ml-2">Made by <strong>G.V.</strong> & <strong>A.P.</strong></span>
+                <span class="d-none d-sm-inline-block ml-2">Made by <strong>Guillermo V.</strong> & <strong>Àlex P.</strong></span>
             </div>
             <div class="d-flex align-items-center justify-content-center">
                 <a href="https://github.com/AlejandroPalomes"><img src="assets/img/github.svg" height="20" width="20"
