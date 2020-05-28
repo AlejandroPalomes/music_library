@@ -1,13 +1,11 @@
-
-
 "use strict";
 
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
-
 if(isIE){
     $(".general").css("height", "100px");
     //$(".main__controls__container").css("transform", "translateY(1px)")
 }
+
 var iTunesURI = "https://itunes.apple.com/search?";
 var endpoint = "term=babymetal&limit=50&country=jp";
 var countryValue;
@@ -66,7 +64,7 @@ var updateBar = function updateBar(x, vol) {
         percentage = 0;
     }
     
-    //update volume bar and video volume
+    //update volume bar and audio volume
     eInner.style.width = percentage + '%';
     audio.volume = percentage / 100;
 }; //Volume control END
@@ -79,8 +77,7 @@ $("#play__button").click(function (e) {
         $("#audioPlayer").get(0).play();
     } else {
         $("#pauseBtn").addClass("d-none");
-        $("#play").removeClass("d-none"); // document.querySelector("#audioPlayer").pause();
-
+        $("#play").removeClass("d-none");
         $("#audioPlayer").get(0).pause();
     }
 });
@@ -387,7 +384,6 @@ function removeSong(storage, element) {
 //Check if the artist+album overflows in the media player
 function checkOverflow() {
     if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
-        //Text has over-flown
         $('#artistInfo').css("position", "absolute");
         var displace = $('.main__controls__display--artist')[0].scrollWidth - $('.main__controls__display--artist').innerWidth();
         $('#artistInfo').css("left", "10px");

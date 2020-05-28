@@ -163,6 +163,7 @@ button:focus {
 }
 
 .main__controls__display--artist {
+    text-align: center;
     color: rgb(155, 155, 161);
     font-size: 15px;
     width: 100%;
