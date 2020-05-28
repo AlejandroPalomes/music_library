@@ -17,6 +17,7 @@ var objFav = {
     type: ""
 };
 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 $.ajax({
     url: "https://www.liferay.com/api/jsonws/country/get-countries/",
     success: function success(data) {
@@ -67,9 +68,8 @@ var updateBar = function updateBar(x, vol) {
     eInner.style.width = percentage + '%';
     audio.volume = percentage / 100;
 }; //Volume control END
+
 // Play/Pause button
-
-
 $("#play__button").click(function (e) {
     if (document.querySelector("#audioPlayer").paused) {
         $("#play").addClass("d-none");
@@ -81,8 +81,9 @@ $("#play__button").click(function (e) {
 
         $("#audioPlayer").get(0).pause();
     }
-}); // Playing time bar
+});
 
+// Playing time bar
 audio.addEventListener("timeupdate", function () {
     var currentTime = audio.currentTime;
     var duration = audio.duration;
@@ -97,12 +98,14 @@ audio.addEventListener("timeupdate", function () {
         $("#pauseBtn").addClass("d-none");
         $("#play").removeClass("d-none");
     }
-}); //Stop video when closing modal
+});
 
+//Stop video when closing modal
 $("#videoModal").click(function (e) {
     if (e.target.id != "videoPreview") $("#videoPreview").get(0).pause();
-}); // Load favorites at begginning
+});
 
+// Load favorites at begginning
 function favLoad() {
     var fav = getLocalStorage();
     $("#main__container").empty();
@@ -145,7 +148,8 @@ function favLoad() {
                     objFav.trackId = e.trackId;
                     objFav.type = e.type;
                     getLocalStorage();
-                    saveLocalSorage(objFav); // favLoad();
+                    saveLocalSorage(objFav);
+                    // favLoad();
 
                     return false;
                 });
@@ -154,8 +158,9 @@ function favLoad() {
     });
 }
 
-favLoad(); //Each time there's a change in the inputs, it updates the reuslts
+favLoad();
 
+//Each time there's a change in the inputs, it updates the reuslts
 $("#inputArtist").keyup(updateSearch);
 $("#explicit").change(updateSearch);
 $("#limitSelect").change(updateSearch);
@@ -178,9 +183,9 @@ function updateSearch() {
     }
 
     getResults(iTunesURI, endpoint);
-} //Request the results
+}
 
-
+//Request the results
 function getResults(iTunesURI, endpoint) {
     $.ajax({
         url: iTunesURI,
@@ -221,9 +226,9 @@ function getResults(iTunesURI, endpoint) {
             heartClik();
         }
     });
-} //Print the results
+}
 
-
+//Print the results
 function printResults(result, type, fav) {
     var contentType;
     type ? contentType = type : contentType = $("#fieldSelect").val();
@@ -289,9 +294,9 @@ function printResults(result, type, fav) {
                 if (e.wrapperType == "collection") $("#main__container").append(createAlbum(e, month, n));
             });
     }
-} //When click on the heart
+}
 
-
+//When click on the heart
 function heartClik() {
     $(".heart").click(function (e) {
         var trackIdCurrent = $(e.currentTarget).parent().parent().prop("id");
@@ -305,9 +310,9 @@ function heartClik() {
         return false;
     });
     heartFill();
-} //Fill the heart when it is in favorites
+}
 
-
+//Fill the heart when it is in favorites
 function heartFill() {
     var storage = getLocalStorage();
     $(".result").each(function (i, song) {
@@ -318,9 +323,9 @@ function heartFill() {
             }
         });
     });
-} //Check localStorage
+}
 
-
+//Check localStorage
 function checkStorage(song) {
     var trackIdCurrent = $(song).parent().parent().prop("id");
     var currentType = $(song).parent().parent().data("type");
@@ -329,15 +334,15 @@ function checkStorage(song) {
     getLocalStorage();
     saveLocalSorage(objFav);
     return false;
-} //Get localStorage
+}
 
-
+//Get localStorage
 function getLocalStorage() {
     tempLocalStorage = JSON.parse(localStorage.getItem("favMusic"));
     return tempLocalStorage;
-} //Check before save to localStorage
+}
 
-
+//Check before save to localStorage
 function saveLocalSorage(obj1) {
     var storage = getLocalStorage();
 
@@ -352,15 +357,15 @@ function saveLocalSorage(obj1) {
         localStorage.setItem("favMusic", JSON.stringify(arr));
         return;
     }
-} //add to localStorage
+}
 
-
+//add to localStorage
 function uploadStorage(storage, obj1) {
     storage.push(obj1);
     localStorage.setItem("favMusic", JSON.stringify(storage)); // return false;
-} //Remove from localStorage
+}
 
-
+//Remove from localStorage
 function removeSong(storage, element) {
     var index;
     $(storage).each(function (i, song) {
@@ -375,9 +380,9 @@ function removeSong(storage, element) {
 
     ;
     localStorage.setItem("favMusic", JSON.stringify(storage));
-} //Check if the artist+album overflows in the media player
+}
 
-
+//Check if the artist+album overflows in the media player
 function checkOverflow() {
     if ($('.main__controls__display--artist')[0].scrollWidth > $('.main__controls__display--artist').innerWidth()) {
         //Text has over-flown
