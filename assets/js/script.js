@@ -393,6 +393,12 @@
 
 "use strict";
 
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+if(isIE){
+    $(".general").css("height", "100px");
+    $(".main__controls__container").css("transform", "translateY(1px)")
+}
 var iTunesURI = "https://itunes.apple.com/search?";
 var endpoint = "term=babymetal&limit=50&country=jp";
 var countryValue;
